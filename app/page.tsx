@@ -134,11 +134,15 @@ const productCards = [
     logo: { src: "/burn.png", zoom: "" },
     title: "Burn",
     href: "https://burnusage.xyz/",
+    // A macOS download rather than something you can open in the browser, so
+    // it takes a "Notify Me" badge where the live products say "Try Now".
+    badge: "Notify Me",
     // Burn's brand accent: burnt clay #d97757
     accent: {
       box: "border-[#d97757]/40",
       card: "group-hover:ring-[#d97757]/60",
       arrow: "text-[#d97757]",
+      badge: "border-[#d97757]/40 text-[#d97757]",
     },
     description:
       "Your Claude usage, always visible. A macOS menu bar app that tracks sessions and weekly limits in real time, so a rate limit never catches you off guard.",
@@ -286,10 +290,18 @@ function Contact() {
       <Crosshair className="top-6 right-6" />
       <Crosshair className="bottom-6 left-6" />
       <Crosshair className="right-6 bottom-6" />
-      <div className="mx-auto flex max-w-2xl flex-col items-center gap-8 text-center">
+      {/* No `max-w-2xl` here: it wrapped the headline at every width. The logo
+          and buttons are centered regardless. */}
+      <div className="mx-auto flex flex-col items-center gap-8 text-center">
         <LogoMark className="size-20 md:size-24" />
-        <h2 className="font-mono text-3xl font-semibold tracking-tight text-balance uppercase md:text-5xl">
-          Build on something solid.
+        {/* The heading is monospace, so its width is a fixed multiple of the
+            font size (~12.6em for these 22 characters). Scaling with `vw`
+            therefore keeps it on one line at a steady share of the section's
+            inner width, and the `clamp` ceiling stops it growing once `main`
+            hits `max-w-6xl`. It still wraps to two balanced lines on phones,
+            where a single line would be unreadably small. */}
+        <h2 className="font-mono text-[clamp(1.875rem,5vw,3.75rem)] font-semibold tracking-tight text-balance uppercase">
+          Build with confidence.
         </h2>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Button
@@ -303,7 +315,7 @@ function Contact() {
               />
             }
           >
-            Message us on X<span className="sr-only">(opens in a new tab)</span>
+            Follow us on X<span className="sr-only">(opens in a new tab)</span>
             <ArrowUpRight data-icon="inline-end" />
           </Button>
           <Button

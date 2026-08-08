@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.2.3] - 2026-08-08
+
+### Changed
+- The contact heading now reads "Build with confidence." in place of "Build on something solid."
+- The primary contact button now reads "Follow us on X" rather than "Message us on X". It still points at the studio's X profile; the secondary "Message the Founder" button is unchanged.
+- That heading now sets on one line across its section instead of wrapping. Its container lost `max-w-2xl` (which was wrapping it onto two lines at every size), and the fixed `text-3xl`/`md:text-5xl` steps became `text-[clamp(1.875rem,5vw,3.75rem)]`, so the line scales with the viewport and stops growing once `main` reaches `max-w-6xl`. Phones still get two balanced lines at the 30px floor.
+
+### Added
+- A "Notify Me" badge on the Burn product card, in the top-right header slot where OmniLens and SpecProof say "Try Now", tinted with Burn's burnt-clay accent. It is a pill rather than a real button because the whole card is already a link, so a nested interactive element would be invalid markup; clicking it follows the card to burnusage.xyz.
+
 ## [0.2.2] - 2026-08-08
 
 ### Added
