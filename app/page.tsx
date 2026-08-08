@@ -60,8 +60,8 @@ function Hero() {
           <Reveal delay={160}>
             <p className="max-w-md text-base leading-relaxed text-muted-foreground">
               Most software is built, then checked. We build through a different
-              lens: quality is the starting assumption, held to proof at every
-              step, not a gate at the end.
+              lens where quality is the starting principle, not a gate at the
+              end.
             </p>
           </Reveal>
         </div>
@@ -111,7 +111,7 @@ function Ticker() {
                       )}
                     />
                   </span>
-                  <span className="font-mono text-xs tracking-[0.3em]">
+                  <span className="font-mono text-sm tracking-[0.3em]">
                     {product.name}
                   </span>
                 </li>
@@ -176,14 +176,13 @@ function Products() {
       id="products"
       className="scroll-mt-16 border-b px-6 py-20 md:px-10"
     >
-      <div className="mb-12 flex max-w-2xl flex-col gap-4">
+      <div className="mb-12 flex flex-col gap-4">
         <h2 className="font-mono text-3xl font-semibold tracking-tight uppercase md:text-4xl">
           Three tools. One standard.
         </h2>
-        <p className="text-base leading-relaxed text-muted-foreground">
-          Tools that make the invisible parts of engineering visible: usage
-          limits, workflow health, test coverage. Each one does one job and
-          keeps doing it. Built in-house, maintained in-house.
+        <p className="text-base leading-relaxed text-pretty text-muted-foreground">
+          Tools that make the invisible parts of engineering visible. Take
+          control of your usage limits, workflow health and test coverage.
         </p>
       </div>
       <div className="grid gap-6 md:grid-cols-3">

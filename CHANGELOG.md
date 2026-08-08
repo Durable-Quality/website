@@ -12,6 +12,9 @@
 - Product card hover accents: OmniLens is blue and SpecProof is green.
 - SpecProof now links to its live site rather than its GitHub repository.
 - Reduced the footer to a single copyright line and shortened the page title and meta description.
+- The footer copyright year now follows the current date instead of being hardcoded, and the line is no longer set in all caps.
+- Rewrote the products section intro, which now spans the full section width instead of being capped at just over half of it.
+- Enlarged the ticker labels and the footer copyright line.
 - Removed em dashes from all site copy and metadata.
 
 ### Removed
