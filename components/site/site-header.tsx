@@ -13,8 +13,8 @@ function SiteHeader() {
           className="flex items-center gap-3"
           aria-label="Durable Quality home"
         >
-          <LogoMark className="size-5" />
-          <Wordmark className="text-xs" />
+          <LogoMark className="size-6" />
+          <Wordmark />
         </Link>
         <Button size="sm" nativeButton={false} render={<a href="#contact" />}>
           Get in touch
