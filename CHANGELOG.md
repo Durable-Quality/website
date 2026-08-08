@@ -19,6 +19,7 @@
 - Removed em dashes from all site copy and metadata.
 
 ### Fixed
+- Set `metadataBase` to the production origin. The Open Graph image is declared as a relative path, so without it Next.js resolved the tag against `http://localhost:3000` and warned on every build; `og:image` and `twitter:image` now point at the deployed URL.
 - Links that open a new tab now say so to screen readers. The product cards and the two contact buttons carry a visually hidden "(opens in a new tab)" next to their label; the arrow icon that conveyed this visually stays `aria-hidden`.
 - Tightened the gap between a ticker logo and its label from `gap-12` to `gap-3`. It matched the gap between products, so the row read as evenly spaced items rather than logo-and-label pairs.
 - The ticker logos are marked `priority` instead of lazy-loading. They sit above the fold, so they now paint with the first frame rather than popping in after it. The product card logos below the fold stay lazy.

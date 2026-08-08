@@ -21,6 +21,9 @@ const plexMono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
+  // Required so relative metadata URLs (the openGraph image below) resolve to
+  // absolute ones; without it Next falls back to localhost and warns.
+  metadataBase: new URL("https://durable-quality.vercel.app"),
   title: "Durable Quality",
   description:
     "An independent software studio building Burn, OmniLens, and SpecProof. Quality assured software, built through a different lens.",
