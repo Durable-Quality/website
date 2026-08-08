@@ -21,7 +21,14 @@ function LogoMark({ className, ...props }: React.ComponentProps<"svg">) {
       className={cn("size-6", className)}
       {...props}
     >
-      <mask id="dq-mark-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="96" height="96">
+      <mask
+        id="dq-mark-mask"
+        maskUnits="userSpaceOnUse"
+        x="0"
+        y="0"
+        width="96"
+        height="96"
+      >
         <rect width="96" height="96" fill="black" />
         {/* full tube silhouette */}
         <path d={LOOP} stroke="white" strokeWidth="8" />

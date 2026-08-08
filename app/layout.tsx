@@ -17,9 +17,9 @@ const plexMono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Durable Quality — Engineered to Endure",
+  title: "Durable Quality",
   description:
-    "An independent software studio building Burn, OmniLens, and SpecProof — developer tools with one standard: they keep working.",
+    "An independent software studio building Burn, OmniLens, and SpecProof. Quality assured software, built through a different lens.",
   openGraph: {
     title: "Durable Quality",
     images: ["/icon.png"],

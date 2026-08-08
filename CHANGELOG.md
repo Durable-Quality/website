@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.2.0] - 2026-08-08
+
+### Added
+- Product cards now show each product's real logo instead of a generic lucide icon.
+- The product ticker gives each product its own icon and brand color.
+- Added `CLAUDE.md` with repository guidance for AI coding agents.
+
+### Changed
+- Rewrote the hero headline and description around "quality assured software".
+- The contact section now links to X for the studio and the founder, replacing the newsletter signup form.
+- Product card hover accents: OmniLens is blue and SpecProof is green.
+- SpecProof now links to its live site rather than its GitHub repository.
+- Reduced the footer to a single copyright line and shortened the page title and meta description.
+- Removed em dashes from all site copy and metadata.
+
+### Removed
+- Removed the metrics, process, pull-quote, and FAQ sections from the landing page.
+- Removed the header navigation, which no longer had sections to point at.
+- Removed the `SectionLabel` component along with the sections that used it.
+
 ## [0.1.0] — 2026-07-13
 
 ### Added
