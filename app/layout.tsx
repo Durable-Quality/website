@@ -46,6 +46,13 @@ export default function RootLayout({
       )}
     >
       <body>{children}</body>
+      <Script
+        src="https://cdn.databuddy.cc/databuddy.js"
+        data-client-id="e7c719eb-7a7e-4c0e-9544-e6f7e9d9d4d4"
+        data-track-web-vitals="true"
+        crossOrigin="anonymous"
+        async
+      />
     </html>
   )
 }
