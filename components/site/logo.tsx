@@ -65,7 +65,7 @@ function Wordmark({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
       className={cn(
-        "font-mono text-sm font-medium tracking-[0.35em] uppercase",
+        "font-mono text-base font-semibold tracking-tight",
         className
       )}
       {...props}

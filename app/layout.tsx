@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google"
+import Script from "next/script"
 
 import "./globals.css"
 import { cn } from "@/lib/utils"
@@ -20,6 +21,9 @@ const plexMono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
+  // Required so relative metadata URLs (the openGraph image below) resolve to
+  // absolute ones; without it Next falls back to localhost and warns.
+  metadataBase: new URL("https://durable-quality.vercel.app"),
   title: "Durable Quality",
   description:
     "An independent software studio building Burn, OmniLens, and SpecProof. Quality assured software, built through a different lens.",
@@ -45,6 +49,13 @@ export default function RootLayout({
       )}
     >
       <body>{children}</body>
+      <Script
+        src="https://cdn.databuddy.cc/databuddy.js"
+        data-client-id="e7c719eb-7a7e-4c0e-9544-e6f7e9d9d4d4"
+        data-track-web-vitals="true"
+        crossOrigin="anonymous"
+        async
+      />
     </html>
   )
 }
