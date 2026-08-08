@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.1] - 2026-08-08
+
+### Fixed
+- The hero logo mark now renders on mobile, centered above the headline. It was `hidden` below the `lg` breakpoint, so phones and tablets got a hero with no mark at all. It scales from `size-40` up to `size-80` and returns to the right-hand column at `lg`, leaving the desktop layout unchanged.
+
 ## [0.2.0] - 2026-08-08
 
 ### Added

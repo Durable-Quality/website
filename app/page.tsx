@@ -51,7 +51,7 @@ function Hero() {
       />
       <Crosshair className="top-6 left-6" />
       <Crosshair className="top-6 right-6" />
-      <div className="relative grid items-center gap-16 px-6 pt-20 pb-16 md:px-10 md:pt-28 md:pb-24 lg:grid-cols-[1fr_auto]">
+      <div className="relative grid items-center gap-10 px-6 pt-20 pb-16 md:px-10 md:pt-28 md:pb-24 lg:grid-cols-[1fr_auto] lg:gap-16">
         <div className="flex max-w-2xl flex-col items-start gap-8">
           <h1 className="font-mono text-4xl leading-[1.08] font-semibold tracking-tight text-balance uppercase md:text-6xl">
             Quality assured{" "}
@@ -62,12 +62,15 @@ function Hero() {
             lens where quality is the starting principle, not a gate at the end.
           </p>
         </div>
-        <div className="relative hidden p-12 lg:block">
+        {/* Centered above the headline on small screens, beside it from `lg`
+            up; `w-fit` keeps the crosshairs hugging the mark instead of
+            stretching to the full column width on mobile. */}
+        <div className="relative order-first mx-auto w-fit p-8 lg:order-none lg:mx-0 lg:p-12">
           <Crosshair className="top-0 left-0" />
           <Crosshair className="top-0 right-0" />
           <Crosshair className="bottom-0 left-0" />
           <Crosshair className="right-0 bottom-0" />
-          <LogoMark className="size-72 xl:size-80" />
+          <LogoMark className="size-40 md:size-56 lg:size-72 xl:size-80" />
         </div>
       </div>
     </section>
