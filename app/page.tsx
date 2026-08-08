@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Aperture, ArrowUpRight, Flame, ShieldCheck } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -79,10 +79,12 @@ function Hero() {
   )
 }
 
+// Logos are the same opaque square PNGs the product cards use, with the
+// same `zoom` crops to even out the padding baked into the source art.
 const products = [
-  { name: "Burn", icon: Flame, color: "text-[#d97757]" },
-  { name: "OmniLens", icon: Aperture, color: "text-[#00e5a0]" },
-  { name: "SpecProof", icon: ShieldCheck, color: "text-[#4d9fff]" },
+  { name: "Burn", logo: { src: "/burn.png", zoom: "" } },
+  { name: "OmniLens", logo: { src: "/omnilens.png", zoom: "scale-140" } },
+  { name: "SpecProof", logo: { src: "/SpecProof.png", zoom: "scale-165" } },
 ]
 
 function Ticker() {
@@ -97,9 +99,18 @@ function Ticker() {
                   key={`${repeat}-${product.name}`}
                   className="flex items-center gap-12 text-muted-foreground"
                 >
-                  <product.icon
-                    className={cn("size-4 opacity-60", product.color)}
-                  />
+                  <span className="size-5 overflow-hidden rounded-sm border">
+                    <Image
+                      src={product.logo.src}
+                      alt=""
+                      width={40}
+                      height={40}
+                      className={cn(
+                        "size-full object-cover",
+                        product.logo.zoom
+                      )}
+                    />
+                  </span>
                   <span className="font-mono text-xs tracking-[0.3em]">
                     {product.name}
                   </span>

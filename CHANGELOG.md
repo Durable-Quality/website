@@ -3,8 +3,7 @@
 ## [0.2.0] - 2026-08-08
 
 ### Added
-- Product cards now show each product's real logo instead of a generic lucide icon.
-- The product ticker gives each product its own icon and brand color.
+- Product cards and the product ticker now show each product's real logo instead of a generic lucide icon.
 - Added `CLAUDE.md` with repository guidance for AI coding agents.
 
 ### Changed
