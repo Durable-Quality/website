@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { LogoMark } from "@/components/site/logo"
-import { Reveal } from "@/components/site/reveal"
 import { SiteHeader } from "@/components/site/site-header"
 import { SiteFooter } from "@/components/site/site-footer"
 
@@ -33,7 +32,10 @@ function Crosshair({ className }: { className?: string }) {
   return (
     <span
       aria-hidden="true"
-      className={`absolute font-mono text-sm text-muted-foreground/60 select-none ${className}`}
+      className={cn(
+        "absolute font-mono text-sm text-muted-foreground/60 select-none",
+        className
+      )}
     >
       +
     </span>
@@ -51,29 +53,22 @@ function Hero() {
       <Crosshair className="top-6 right-6" />
       <div className="relative grid items-center gap-16 px-6 pt-20 pb-16 md:px-10 md:pt-28 md:pb-24 lg:grid-cols-[1fr_auto]">
         <div className="flex max-w-2xl flex-col items-start gap-8">
-          <Reveal delay={80}>
-            <h1 className="font-mono text-4xl leading-[1.08] font-semibold tracking-tight text-balance uppercase md:text-6xl">
-              Quality assured{" "}
-              <span className="text-muted-foreground">software.</span>
-            </h1>
-          </Reveal>
-          <Reveal delay={160}>
-            <p className="max-w-md text-base leading-relaxed text-muted-foreground">
-              Most software is built, then checked. We build through a different
-              lens where quality is the starting principle, not a gate at the
-              end.
-            </p>
-          </Reveal>
+          <h1 className="font-mono text-4xl leading-[1.08] font-semibold tracking-tight text-balance uppercase md:text-6xl">
+            Quality assured{" "}
+            <span className="text-muted-foreground">software.</span>
+          </h1>
+          <p className="max-w-md text-base leading-relaxed text-muted-foreground">
+            Most software is built, then checked. We build through a different
+            lens where quality is the starting principle, not a gate at the end.
+          </p>
         </div>
-        <Reveal delay={200} className="hidden lg:block">
-          <div className="relative p-12">
-            <Crosshair className="top-0 left-0" />
-            <Crosshair className="top-0 right-0" />
-            <Crosshair className="bottom-0 left-0" />
-            <Crosshair className="right-0 bottom-0" />
-            <LogoMark className="size-72 xl:size-80" />
-          </div>
-        </Reveal>
+        <div className="relative hidden p-12 lg:block">
+          <Crosshair className="top-0 left-0" />
+          <Crosshair className="top-0 right-0" />
+          <Crosshair className="bottom-0 left-0" />
+          <Crosshair className="right-0 bottom-0" />
+          <LogoMark className="size-72 xl:size-80" />
+        </div>
       </div>
     </section>
   )
@@ -97,14 +92,19 @@ function Ticker() {
               products.map((product) => (
                 <li
                   key={`${repeat}-${product.name}`}
-                  className="flex items-center gap-12 text-muted-foreground"
+                  // Tight gap inside the pair; the `gap-12` on the list is
+                  // what separates one product from the next.
+                  className="flex items-center gap-3 text-muted-foreground"
                 >
                   <span className="size-5 overflow-hidden rounded-sm border">
+                    {/* Above the fold: eager so the tiles are painted with the
+                        first frame instead of popping in after it. */}
                     <Image
                       src={product.logo.src}
                       alt=""
                       width={40}
                       height={40}
+                      priority
                       className={cn(
                         "size-full object-cover",
                         product.logo.zoom
@@ -184,7 +184,7 @@ function Products() {
         </p>
       </div>
       <div className="grid gap-6 md:grid-cols-3">
-        {productCards.map((product, i) => {
+        {productCards.map((product) => {
           const card = (
             <Card
               className={cn(
@@ -215,13 +215,19 @@ function Products() {
                 <CardTitle className="flex items-center gap-2 font-mono text-sm font-medium tracking-[0.15em]">
                   {product.title}
                   {product.href && (
-                    <ArrowUpRight
-                      className={cn(
-                        "size-3.5",
-                        product.accent?.arrow ?? "text-foreground"
-                      )}
-                      aria-hidden="true"
-                    />
+                    <>
+                      {/* The arrow is the sighted cue that the card opens a new
+                          tab; this is the same information for screen readers,
+                          folded into the link's accessible name. */}
+                      <span className="sr-only">(opens in a new tab)</span>
+                      <ArrowUpRight
+                        className={cn(
+                          "size-3.5",
+                          product.accent?.arrow ?? "text-foreground"
+                        )}
+                        aria-hidden="true"
+                      />
+                    </>
                   )}
                 </CardTitle>
                 <CardDescription className="leading-relaxed">
@@ -230,21 +236,20 @@ function Products() {
               </CardHeader>
             </Card>
           )
-          return (
-            <Reveal key={product.title} delay={i * 60}>
-              {product.href ? (
-                <a
-                  href={product.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group block h-full"
-                >
-                  {card}
-                </a>
-              ) : (
-                <div className="group h-full">{card}</div>
-              )}
-            </Reveal>
+          return product.href ? (
+            <a
+              key={product.title}
+              href={product.href}
+              target="_blank"
+              rel="noreferrer"
+              className="group block h-full"
+            >
+              {card}
+            </a>
+          ) : (
+            <div key={product.title} className="group h-full">
+              {card}
+            </div>
           )
         })}
       </div>
@@ -262,7 +267,7 @@ function Contact() {
       <Crosshair className="top-6 right-6" />
       <Crosshair className="bottom-6 left-6" />
       <Crosshair className="right-6 bottom-6" />
-      <Reveal className="mx-auto flex max-w-2xl flex-col items-center gap-8 text-center">
+      <div className="mx-auto flex max-w-2xl flex-col items-center gap-8 text-center">
         <LogoMark className="size-10" />
         <h2 className="font-mono text-3xl font-semibold tracking-tight text-balance uppercase md:text-5xl">
           Build on something solid.
@@ -279,7 +284,7 @@ function Contact() {
               />
             }
           >
-            Message us on X
+            Message us on X<span className="sr-only">(opens in a new tab)</span>
             <ArrowUpRight data-icon="inline-end" />
           </Button>
           <Button
@@ -295,10 +300,11 @@ function Contact() {
             }
           >
             Message the Founder
+            <span className="sr-only">(opens in a new tab)</span>
             <ArrowUpRight data-icon="inline-end" />
           </Button>
         </div>
-      </Reveal>
+      </div>
     </section>
   )
 }

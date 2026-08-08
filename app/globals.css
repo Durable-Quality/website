@@ -120,6 +120,9 @@
     }
   html {
     @apply font-sans;
+    /* The site is dark-only, so tell the browser: dark scrollbars, dark form
+       controls, and a dark canvas before the first paint rather than white. */
+    color-scheme: dark;
     }
   ::selection {
     @apply bg-primary text-primary-foreground;
