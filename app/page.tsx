@@ -147,11 +147,13 @@ const productCards = [
     logo: { src: "/omnilens.png", zoom: "scale-140" },
     title: "OmniLens",
     href: "https://www.omnilens.xyz/",
+    badge: "Try Now",
     // Neutral tile border; accent is blue #4d9fff
     accent: {
       box: "border-border",
       card: "group-hover:ring-[#4d9fff]/60",
       arrow: "text-[#4d9fff]",
+      badge: "border-[#4d9fff]/40 text-[#4d9fff]",
     },
     description:
       "Workflow health, finally visible. An open-source dashboard for GitHub Actions: success rates, runtimes, and stability trends across every repository.",
@@ -160,11 +162,13 @@ const productCards = [
     logo: { src: "/SpecProof.png", zoom: "scale-165" },
     title: "SpecProof",
     href: "https://specproofoss.vercel.app/",
+    badge: "Try Now",
     // Neutral tile border; accent is SpecProof's verified-green #00e5a0
     accent: {
       box: "border-border",
       card: "group-hover:ring-[#00e5a0]/60",
       arrow: "text-[#00e5a0]",
+      badge: "border-[#00e5a0]/40 text-[#00e5a0]",
     },
     description:
       "Proof that your tests cover your spec. Audits every OpenAPI operation against real test assertions, and fails the build when coverage drifts.",
@@ -179,7 +183,8 @@ function Products() {
     >
       <div className="mb-12 flex flex-col gap-4">
         <h2 className="font-mono text-3xl font-semibold tracking-tight uppercase md:text-4xl">
-          Three tools. One standard.
+          Three tools.
+          <br className="md:hidden" /> One standard.
         </h2>
         <p className="text-base leading-relaxed text-pretty text-muted-foreground">
           Tools that make the invisible parts of engineering visible. Take
@@ -214,6 +219,17 @@ function Products() {
                       )}
                     />
                   </div>
+                  {product.badge && (
+                    <span
+                      className={cn(
+                        "rounded-full border px-2.5 py-1 font-mono text-[10px] leading-none font-medium tracking-[0.15em] uppercase",
+                        product.accent?.badge ??
+                          "border-border text-muted-foreground"
+                      )}
+                    >
+                      {product.badge}
+                    </span>
+                  )}
                 </div>
                 <CardTitle className="flex items-center gap-2 font-mono text-sm font-medium tracking-[0.15em]">
                   {product.title}
@@ -271,7 +287,7 @@ function Contact() {
       <Crosshair className="bottom-6 left-6" />
       <Crosshair className="right-6 bottom-6" />
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-8 text-center">
-        <LogoMark className="size-10" />
+        <LogoMark className="size-20 md:size-24" />
         <h2 className="font-mono text-3xl font-semibold tracking-tight text-balance uppercase md:text-5xl">
           Build on something solid.
         </h2>

@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.2] - 2026-08-08
+
+### Added
+- A "Try Now" badge on the OmniLens and SpecProof product cards, tinted with each product's accent color. Burn has none, since it is a macOS download rather than something you can open in the browser.
+
+### Changed
+- Enlarged the contact section logo mark from `size-10` to `size-20`, stepping up to `size-24` at `md`.
+- The products heading now breaks after "Three tools." on mobile only, so the two sentences stop wrapping mid-phrase on narrow screens.
+
 ## [0.2.1] - 2026-08-08
 
 ### Fixed
