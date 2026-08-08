@@ -34,6 +34,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      // Next 16 no longer neutralizes `scroll-behavior: smooth` around its own
+      // router scrolls, so the scroll reset on load/navigation animates instead
+      // of jumping: a refresh lands at the restored offset, then visibly crawls
+      // to the top. This attribute opts back into the pre-16 override, keeping
+      // smooth scrolling for in-page anchors only.
+      data-scroll-behavior="smooth"
       className={cn(
         "dark scroll-smooth antialiased",
         plexSans.variable,

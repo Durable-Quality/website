@@ -111,9 +111,7 @@ function Ticker() {
                       )}
                     />
                   </span>
-                  <span className="font-mono text-sm tracking-[0.3em]">
-                    {product.name}
-                  </span>
+                  <span className="font-mono text-base">{product.name}</span>
                 </li>
               ))
             )}
@@ -137,7 +135,7 @@ const productCards = [
     accent: {
       box: "border-[#d97757]/40",
       card: "group-hover:ring-[#d97757]/60",
-      arrow: "group-hover:text-[#d97757]",
+      arrow: "text-[#d97757]",
     },
     description:
       "Your Claude usage, always visible. A macOS menu bar app that tracks sessions and weekly limits in real time, so a rate limit never catches you off guard.",
@@ -146,11 +144,11 @@ const productCards = [
     logo: { src: "/omnilens.png", zoom: "scale-140" },
     title: "OmniLens",
     href: "https://www.omnilens.xyz/",
-    // Neutral tile border; hover accent is blue #4d9fff
+    // Neutral tile border; accent is blue #4d9fff
     accent: {
       box: "border-border",
       card: "group-hover:ring-[#4d9fff]/60",
-      arrow: "group-hover:text-[#4d9fff]",
+      arrow: "text-[#4d9fff]",
     },
     description:
       "Workflow health, finally visible. An open-source dashboard for GitHub Actions: success rates, runtimes, and stability trends across every repository.",
@@ -159,11 +157,11 @@ const productCards = [
     logo: { src: "/SpecProof.png", zoom: "scale-165" },
     title: "SpecProof",
     href: "https://specproofoss.vercel.app/",
-    // Neutral tile border; hover accent is SpecProof's verified-green #00e5a0
+    // Neutral tile border; accent is SpecProof's verified-green #00e5a0
     accent: {
       box: "border-border",
       card: "group-hover:ring-[#00e5a0]/60",
-      arrow: "group-hover:text-[#00e5a0]",
+      arrow: "text-[#00e5a0]",
     },
     description:
       "Proof that your tests cover your spec. Audits every OpenAPI operation against real test assertions, and fails the build when coverage drifts.",
@@ -219,8 +217,8 @@ function Products() {
                   {product.href && (
                     <ArrowUpRight
                       className={cn(
-                        "size-3.5 text-muted-foreground opacity-0 transition-all duration-200 group-hover:opacity-100",
-                        product.accent?.arrow ?? "group-hover:text-foreground"
+                        "size-3.5",
+                        product.accent?.arrow ?? "text-foreground"
                       )}
                       aria-hidden="true"
                     />

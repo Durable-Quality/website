@@ -9,13 +9,17 @@
 ### Changed
 - Rewrote the hero headline and description around "quality assured software".
 - The contact section now links to X for the studio and the founder, replacing the newsletter signup form.
-- Product card hover accents: OmniLens is blue and SpecProof is green.
+- Product card accents: OmniLens is blue and SpecProof is green.
+- The product card link arrow is now always visible in the product's accent color, rather than fading in on hover, so the cards read as clickable at rest.
 - SpecProof now links to its live site rather than its GitHub repository.
 - Reduced the footer to a single copyright line and shortened the page title and meta description.
 - The footer copyright year now follows the current date instead of being hardcoded, and the line is no longer set in all caps.
 - Rewrote the products section intro, which now spans the full section width instead of being capped at just over half of it.
-- Enlarged the ticker labels and the footer copyright line.
+- Enlarged the ticker labels to match body copy and dropped their wide letter-spacing; enlarged the footer copyright line.
 - Removed em dashes from all site copy and metadata.
+
+### Fixed
+- Refreshing the page no longer animates a slow scroll from the restored position up to the top. Next.js 16 stopped neutralizing `scroll-behavior: smooth` around its own router scrolls, so the site now opts back into that override via `data-scroll-behavior`.
 
 ### Removed
 - Removed the metrics, process, pull-quote, and FAQ sections from the landing page.
