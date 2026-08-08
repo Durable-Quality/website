@@ -309,7 +309,7 @@ function Contact() {
             nativeButton={false}
             render={
               <a
-                href="https://x.com/_DurableQuality"
+                href="https://x.com/DurableQA"
                 target="_blank"
                 rel="noreferrer"
               />

@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- The "Follow us on X" button now points at `https://x.com/DurableQA`, the studio's current handle, replacing `https://x.com/_DurableQuality`.
+
 ## [0.2.3] - 2026-08-08
 
 ### Changed
