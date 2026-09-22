@@ -1,9 +1,16 @@
 # Changelog
 
-## [Unreleased]
+## [0.3.0] - 2026-09-22
+
+### Added
+- A "Substack" section between Products and Contact, showing recent posts with excerpts and a "Read on Substack" link out to the studio's Substack.
 
 ### Changed
 - The "Follow us on X" button now points at `https://x.com/DurableQA`, the studio's current handle, replacing `https://x.com/_DurableQuality`.
+- The hero, products, and contact headings no longer force uppercase text.
+
+### Removed
+- The "Message the Founder" button in the contact section.
 
 ## [0.2.3] - 2026-08-08
 

@@ -12,6 +12,7 @@ import {
 import { LogoMark } from "@/components/site/logo"
 import { SiteHeader } from "@/components/site/site-header"
 import { SiteFooter } from "@/components/site/site-footer"
+import { SubstackIcon } from "@/components/site/substack-icon"
 
 export default function Page() {
   return (
@@ -21,6 +22,7 @@ export default function Page() {
         <Hero />
         <Ticker />
         <Products />
+        <Substack />
         <Contact />
       </main>
       <SiteFooter />
@@ -53,7 +55,7 @@ function Hero() {
       <Crosshair className="top-6 right-6" />
       <div className="relative grid items-center gap-10 px-6 pt-20 pb-16 md:px-10 md:pt-28 md:pb-24 lg:grid-cols-[1fr_auto] lg:gap-16">
         <div className="flex max-w-2xl flex-col items-start gap-8">
-          <h1 className="font-mono text-4xl leading-[1.08] font-semibold tracking-tight text-balance uppercase md:text-6xl">
+          <h1 className="font-mono text-4xl leading-[1.08] font-semibold tracking-tight text-balance md:text-6xl">
             Quality assured{" "}
             <span className="text-muted-foreground">software.</span>
           </h1>
@@ -186,7 +188,7 @@ function Products() {
       className="scroll-mt-16 border-b px-6 py-20 md:px-10"
     >
       <div className="mb-12 flex flex-col gap-4">
-        <h2 className="font-mono text-3xl font-semibold tracking-tight uppercase md:text-4xl">
+        <h2 className="font-mono text-3xl font-semibold tracking-tight md:text-4xl">
           Three tools.
           <br className="md:hidden" /> One standard.
         </h2>
@@ -280,6 +282,136 @@ function Products() {
   )
 }
 
+const substackPosts = [
+  {
+    title: "Agentic or not, here it comes",
+    excerpt:
+      "My first encounter with AI was back in 2023 when Cursor launched and we were each given a license and told to use it and see if it's helpful in any way.",
+    date: "Sep 8",
+    href: "https://durableqa.substack.com/p/agentic-or-not-here-it-comes",
+    image:
+      "https://substackcdn.com/image/fetch/$s_!-oll!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Facd73480-5618-46f4-bb19-9f4936259abf_2051x767.png",
+  },
+  {
+    title: "Coming soon",
+    excerpt: "The next article is in the works. Subscribe to get it first.",
+    date: null,
+    href: null,
+    image: null,
+  },
+]
+
+function Substack() {
+  return (
+    <section
+      id="substack"
+      className="scroll-mt-16 border-b px-6 py-20 md:px-10"
+    >
+      <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
+        <h2 className="font-mono text-3xl font-semibold tracking-tight md:text-4xl">
+          Substack
+        </h2>
+        <p className="text-base leading-relaxed text-pretty text-muted-foreground">
+          Articles on engineering Durable Quality in today&apos;s agentic
+          landscape.
+        </p>
+        <div className="grid w-full gap-6 text-left sm:grid-cols-2">
+          {substackPosts.map((post) => {
+            const card = (
+              <Card className="relative isolate h-full min-h-56 transition-[transform,box-shadow] duration-200 group-hover:scale-[1.03] group-hover:ring-foreground/25 motion-reduce:scale-100 motion-reduce:transition-none">
+                {post.image && (
+                  <div className="absolute inset-0 -z-10 overflow-hidden">
+                    <Image
+                      src={post.image}
+                      alt=""
+                      fill
+                      priority
+                      sizes="(min-width: 640px) 24rem, 100vw"
+                      className="scale-110 object-cover blur-sm transition-[filter] duration-300 group-hover:blur-[2px] motion-reduce:transition-none"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/75 to-background/20" />
+                  </div>
+                )}
+                <CardHeader>
+                  <div className="mb-2 flex items-center justify-between">
+                    <span
+                      className={cn(
+                        "rounded-full border border-border px-2.5 py-1 font-mono text-[10px] leading-none font-medium tracking-[0.15em] text-muted-foreground uppercase",
+                        post.image &&
+                          "transition-[text-shadow] duration-300 text-shadow-sm group-hover:text-shadow-[0_1px_2px_rgba(0,0,0,0.9),0_2px_8px_rgba(0,0,0,0.7)]"
+                      )}
+                    >
+                      {post.date ?? "Coming Soon"}
+                    </span>
+                    {post.href && (
+                      <>
+                        <span className="sr-only">(opens in a new tab)</span>
+                        <ArrowUpRight
+                          className="size-3.5 text-foreground"
+                          aria-hidden="true"
+                        />
+                      </>
+                    )}
+                  </div>
+                  <CardTitle
+                    className={cn(
+                      "font-mono text-sm font-medium tracking-[0.15em]",
+                      post.image &&
+                        "transition-[text-shadow] duration-300 text-shadow-sm group-hover:text-shadow-[0_1px_2px_rgba(0,0,0,0.9),0_2px_8px_rgba(0,0,0,0.7)]"
+                    )}
+                  >
+                    {post.title}
+                  </CardTitle>
+                  <CardDescription
+                    className={cn(
+                      "leading-relaxed",
+                      post.image &&
+                        "transition-[text-shadow] duration-300 text-shadow-sm group-hover:text-shadow-[0_1px_2px_rgba(0,0,0,0.9),0_2px_8px_rgba(0,0,0,0.7)]"
+                    )}
+                  >
+                    {post.excerpt}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            )
+            return post.href ? (
+              <a
+                key={post.title}
+                href={post.href}
+                target="_blank"
+                rel="noreferrer"
+                className="group block h-full"
+              >
+                {card}
+              </a>
+            ) : (
+              <div key={post.title} className="h-full opacity-70">
+                {card}
+              </div>
+            )
+          })}
+        </div>
+        <Button
+          size="lg"
+          nativeButton={false}
+          render={
+            <a
+              href="https://durableqa.substack.com/"
+              target="_blank"
+              rel="noreferrer"
+            />
+          }
+        >
+          <SubstackIcon data-icon="inline-start" className="text-[#FF6719]" />
+          Read on Substack
+          <span className="sr-only">(opens in a new tab)</span>
+          <ArrowUpRight data-icon="inline-end" />
+        </Button>
+      </div>
+    </section>
+  )
+}
+
 function Contact() {
   return (
     <section
@@ -300,7 +432,7 @@ function Contact() {
             inner width, and the `clamp` ceiling stops it growing once `main`
             hits `max-w-6xl`. It still wraps to two balanced lines on phones,
             where a single line would be unreadably small. */}
-        <h2 className="font-mono text-[clamp(1.875rem,5vw,3.75rem)] font-semibold tracking-tight text-balance uppercase">
+        <h2 className="font-mono text-[clamp(1.875rem,5vw,3.75rem)] font-semibold tracking-tight text-balance">
           Build with confidence.
         </h2>
         <div className="flex flex-wrap items-center justify-center gap-3">
@@ -316,22 +448,6 @@ function Contact() {
             }
           >
             Follow us on X<span className="sr-only">(opens in a new tab)</span>
-            <ArrowUpRight data-icon="inline-end" />
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            nativeButton={false}
-            render={
-              <a
-                href="https://x.com/chriszeuch"
-                target="_blank"
-                rel="noreferrer"
-              />
-            }
-          >
-            Message the Founder
-            <span className="sr-only">(opens in a new tab)</span>
             <ArrowUpRight data-icon="inline-end" />
           </Button>
         </div>
