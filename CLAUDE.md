@@ -14,9 +14,10 @@ bun start        # serve production build
 bun run lint     # eslint (flat config, next core-web-vitals + typescript)
 bun run typecheck # tsc --noEmit
 bun run format   # prettier --write "**/*.{ts,tsx}"
+bun run test     # bun test: rebuilds Durable Testing, then checks its output
 ```
 
-There is no test suite yet (see `TEST_PLAN.md`). CI (`.github/workflows/ci.yml`) runs build, typecheck and lint on every pull request. The build includes Durable Testing's checks, which fail on em dashes and on `.md`/`.html` section mismatches.
+Tests live in `tests/` and use `bun test` (see `TEST_PLAN.md` for what's covered and what's left). `tests/guide.ts` rebuilds Durable Testing once per run and exposes its output; `tests/build-output.test.ts` checks links, placeholders, JSON-LD, rules and the Claude skill. CI (`.github/workflows/ci.yml`) runs build, typecheck, lint and tests on every pull request. The build itself also fails on em dashes and on `.md`/`.html` section mismatches in the guide.
 
 ## Next.js version warning
 

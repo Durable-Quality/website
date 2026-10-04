@@ -34,5 +34,4 @@ jobs:
         run: bun run lint
 
       - name: Test
-        if: hashFiles('tests/**/*.test.ts') != ''
-        run: bun test
+        run: bun run test

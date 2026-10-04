@@ -10,7 +10,8 @@
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "bun test tests"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/bun": "1.3.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

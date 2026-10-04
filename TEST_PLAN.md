@@ -50,16 +50,16 @@ Check that the guide's URLs behave correctly on a running server.
 
 Check the files the build writes.
 
-- [ ] Every link points to a file that exists
-  Proof: _pending_
-- [ ] No unfilled `{{placeholders}}` are left
-  Proof: _pending_
-- [ ] Structured data (JSON-LD) is valid
-  Proof: _pending_
-- [ ] Each page's rules are the same everywhere they appear
-  Proof: _pending_
-- [ ] The Claude skill file is valid
-  Proof: _pending_
+- [x] Every link points to a file that exists
+  Proof: [tests/build-output.test.ts](tests/build-output.test.ts) (`describe("links")`)
+- [x] No unfilled `{{placeholders}}` are left
+  Proof: [tests/build-output.test.ts](tests/build-output.test.ts) (`describe("placeholders")`)
+- [x] Structured data (JSON-LD) is valid
+  Proof: [tests/build-output.test.ts](tests/build-output.test.ts) (`describe("structured data")`)
+- [x] Each page's rules are the same everywhere they appear
+  Proof: [tests/build-output.test.ts](tests/build-output.test.ts) (`describe("rules")`)
+- [x] The Claude skill file is valid
+  Proof: [tests/build-output.test.ts](tests/build-output.test.ts) (`describe("Claude skill")`)
 
 ## 3. Build checks
 
