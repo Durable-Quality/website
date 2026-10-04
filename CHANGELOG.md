@@ -3,13 +3,12 @@
 ## [0.4.1] - 2026-10-04
 
 ### Added
-- Build checks in Durable Testing: `durable-testing/build.mjs` now stops before writing anything if a page or the layout contains an em dash, or if a page's `.md` and `.html` versions have different sections. It lists every problem with its file, and line or section.
-- CI on GitHub Actions (`.github/workflows/ci.yml`): every pull request and push to `main` installs with Bun, builds the site (which also runs the build checks), typechecks, lints and runs the tests.
-- Tests for Durable Testing's build output, in `tests/`, run with `bun run test` and in CI. They rebuild the guide, then check that every link on the guide points to a file (and heading) that exists, that no `{{placeholders}}` are left, that each page's JSON-LD is valid and matches the page, that each page's rules are identical in the HTML, `rules.md`, the skill and `llms-full.txt`, and that the Claude skill's front matter is valid.
-- `@types/bun` as a dev dependency, so `bun run typecheck` covers the tests.
+- Durable Testing's build fails on em dashes and on `.md`/`.html` section mismatches.
+- Tests for the guide's build output (`bun run test`): links, placeholders, JSON-LD, rules and the Claude skill.
+- CI that builds, typechecks, lints and tests every pull request.
 
 ### Changed
-- The page cards on Durable Testing's overview are now a `<nav>` labelled "Pages", matching the Markdown's "Pages" section. They look the same.
+- The guide overview's page cards are now a `<nav>` labelled "Pages".
 
 ## [0.4.0] - 2026-10-04
 
