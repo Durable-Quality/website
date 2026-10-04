@@ -54,10 +54,18 @@ export default function RootLayout({
       )}
     >
       <body>{children}</body>
+      {/* Databuddy analytics, shared with Durable Testing
+          (durable-testing/src/layout.html). `track-attributes` sends a named
+          event for every click on an element with `data-track`, carrying its
+          other `data-*` attributes as properties; `track-outgoing-links` logs
+          clicks on links to other sites. */}
       <Script
         src="https://cdn.databuddy.cc/databuddy.js"
         data-client-id="e7c719eb-7a7e-4c0e-9544-e6f7e9d9d4d4"
         data-track-web-vitals="true"
+        data-track-attributes="true"
+        data-track-outgoing-links="true"
+        data-track-errors="true"
         crossOrigin="anonymous"
         async
       />

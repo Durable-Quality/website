@@ -267,6 +267,9 @@ function Products() {
               href={product.href}
               target="_blank"
               rel="noreferrer"
+              data-track="product_click"
+              data-product={product.title.toLowerCase()}
+              data-badge={product.badge}
               className="group block h-full"
             >
               {card}
@@ -324,7 +327,14 @@ function DurableTesting() {
       </div>
       <div className="mb-6 grid gap-6 md:grid-cols-3">
         {durableTestingPages.map((page) => (
-          <a key={page.href} href={page.href} className="group block h-full">
+          <a
+            key={page.href}
+            href={page.href}
+            data-track="durable_testing_click"
+            data-location="card"
+            data-page={page.href.split("/").pop()}
+            className="group block h-full"
+          >
             <Card className="h-full pt-0 transition-shadow duration-200 group-hover:ring-foreground/25">
               <div className="border-b bg-muted/40 bg-[radial-gradient(var(--color-border)_1px,transparent_1.3px)] bg-size-[18px_18px] px-2.5 py-2">
                 <Image
@@ -357,6 +367,8 @@ function DurableTesting() {
           size="lg"
           nativeButton={false}
           render={<a href="/durable-testing" />}
+          data-track="durable_testing_click"
+          data-location="section_button"
         >
           Read Durable Testing
           <ArrowUpRight data-icon="inline-end" />
@@ -462,6 +474,8 @@ function Substack() {
                 href={post.href}
                 target="_blank"
                 rel="noreferrer"
+                data-track="substack_click"
+                data-location="post"
                 className="group block h-full"
               >
                 {card}
@@ -483,6 +497,8 @@ function Substack() {
               rel="noreferrer"
             />
           }
+          data-track="substack_click"
+          data-location="section_button"
         >
           <SubstackIcon data-icon="inline-start" className="text-[#FF6719]" />
           Read on Substack
@@ -527,6 +543,8 @@ function Contact() {
                 rel="noreferrer"
               />
             }
+            data-track="x_follow_click"
+            data-location="contact"
           >
             Follow us on X<span className="sr-only">(opens in a new tab)</span>
             <ArrowUpRight data-icon="inline-end" />

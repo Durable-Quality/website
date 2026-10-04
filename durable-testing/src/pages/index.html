@@ -25,20 +25,20 @@
       <h3>Claude skill</h3>
       <p>Claude loads it whenever a task involves testing.</p>
     </div>
-    <div class="cmd"><code id="cmd-skill">curl -fsSL {{baseUrl}}/skills/durable-testing/SKILL.md --create-dirs -o ~/.claude/skills/durable-testing/SKILL.md</code><button class="copy-mini" type="button" data-copy-el="cmd-skill" aria-label="Copy install command">{{copyIcon}}Copy</button></div>
+    <div class="cmd"><code id="cmd-skill">curl -fsSL {{baseUrl}}/skills/durable-testing/SKILL.md --create-dirs -o ~/.claude/skills/durable-testing/SKILL.md</code><button class="copy-mini" type="button" data-copy-el="cmd-skill" data-track="copy_skill_install" aria-label="Copy install command">{{copyIcon}}Copy</button></div>
   </div>
   <div class="install-row">
     <div class="install-text">
       <h3>AGENTS.md rules</h3>
       <p>All {{ruleCount}} rules in one block, for <code>AGENTS.md</code>, <code>CLAUDE.md</code> or <code>.cursor/rules</code>.</p>
     </div>
-    <div class="install-actions"><button class="copy-mini" type="button" data-copy-rules="all">{{copyIcon}}Copy all rules</button><a class="text-link" href="{{base}}/rules.md">rules.md</a></div>
+    <div class="install-actions"><button class="copy-mini" type="button" data-copy-rules="all" data-track="copy_rules" data-location="page">{{copyIcon}}Copy all rules</button><a class="text-link" href="{{base}}/rules.md" data-track="open_agent_file" data-file="rules.md">rules.md</a></div>
   </div>
   <div class="install-row">
     <div class="install-text">
       <h3>Markdown</h3>
       <p>Every page has a <code>.md</code> twin. Request any page with <code>Accept: text/markdown</code> to get it directly.</p>
     </div>
-    <div class="install-actions"><a class="text-link" href="{{base}}/llms.txt">llms.txt</a><a class="text-link" href="{{base}}/llms-full.txt">llms-full.txt</a></div>
+    <div class="install-actions"><a class="text-link" href="{{base}}/llms.txt" data-track="open_agent_file" data-file="llms.txt">llms.txt</a><a class="text-link" href="{{base}}/llms-full.txt" data-track="open_agent_file" data-file="llms-full.txt">llms-full.txt</a></div>
   </div>
 </div>

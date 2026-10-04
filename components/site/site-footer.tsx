@@ -10,6 +10,8 @@ function SiteFooter() {
               in public/durable-testing, not a route of this app. */}
           <a
             href="/durable-testing"
+            data-track="durable_testing_click"
+            data-location="footer"
             className="text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
           >
             Durable Testing

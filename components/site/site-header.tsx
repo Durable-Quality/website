@@ -25,11 +25,19 @@ function SiteHeader() {
             variant="outline"
             nativeButton={false}
             render={<a href="/durable-testing" />}
+            data-track="durable_testing_click"
+            data-location="header"
             className="hidden sm:inline-flex"
           >
             Durable Testing
           </Button>
-          <Button size="sm" nativeButton={false} render={<a href="#contact" />}>
+          <Button
+            size="sm"
+            nativeButton={false}
+            render={<a href="#contact" />}
+            data-track="get_in_touch_click"
+            data-location="header"
+          >
             Get in touch
             <ArrowUpRight data-icon="inline-end" />
           </Button>
