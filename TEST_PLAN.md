@@ -29,22 +29,22 @@ When an item is done, tick it and replace `Proof: _pending_` with a link to the 
 
 ## 1. Routing
 
-Check that the guide's URLs behave correctly on a running server.
+Check that the guide's URLs behave correctly on a running server. The tests start `next start` on the production build, so run `bun run build` first. Set `ROUTING_BASE_URL` to test a deployed site instead.
 
-- [ ] Clean URLs load the page
-  Proof: _pending_
-- [ ] Old `.html` URLs redirect to the clean URL
-  Proof: _pending_
-- [ ] Agents asking for Markdown get Markdown
-  Proof: _pending_
-- [ ] The headers are set (`Vary`, `Link`, CORS)
-  Proof: _pending_
-- [ ] Unknown pages return 404
-  Proof: _pending_
-- [ ] `robots.txt` and `llms.txt` load
-  Proof: _pending_
-- [ ] The routing tests also run against the live site after each deploy
-  Proof: _pending_
+- [x] Clean URLs load the page
+  Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("clean URLs")`)
+- [x] Old `.html` URLs redirect to the clean URL
+  Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("redirects")`)
+- [x] Agents asking for Markdown get Markdown
+  Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("Markdown negotiation")`)
+- [x] The headers are set (`Vary`, `Link`, CORS)
+  Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("headers")`)
+- [x] Unknown pages return 404
+  Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("404s")`)
+- [x] `robots.txt` and `llms.txt` load
+  Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("robots.txt and llms.txt")`)
+- [x] The routing tests also run against the live site after each deploy
+  Proof: [.github/workflows/post-deploy.yml](.github/workflows/post-deploy.yml)
 
 ## 2. Build output
 
