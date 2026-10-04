@@ -1,0 +1,44 @@
+<header class="page-head hero">
+  <h1>{{title}}<svg data-d="underline" viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true"></svg></h1>
+  <p class="lede">The core ideas behind software testing, written for developers and the AI agents that work alongside them.</p>
+</header>
+
+<div class="overview">
+  <a class="ov-card" href="{{base}}/testing-principles">
+    <span class="ov-thumb canvas"><svg data-d="ov1" viewBox="0 0 240 140" aria-hidden="true"></svg></span>
+    <span class="ov-body"><span class="ov-title">The 7 testing principles</span><span class="ov-desc">Seven constraints every test strategy lives inside.</span></span>
+  </a>
+  <a class="ov-card" href="{{base}}/sdlc-stlc">
+    <span class="ov-thumb canvas"><svg data-d="ov2" viewBox="0 0 240 140" aria-hidden="true"></svg></span>
+    <span class="ov-body"><span class="ov-title">SDLC &amp; STLC</span><span class="ov-desc">How software gets built, how it gets tested, and where the two meet.</span></span>
+  </a>
+  <a class="ov-card" href="{{base}}/test-pyramid">
+    <span class="ov-thumb canvas"><svg data-d="ov3" viewBox="0 0 240 140" aria-hidden="true"></svg></span>
+    <span class="ov-body"><span class="ov-title">The testing triangle</span><span class="ov-desc">How many tests to write at each level, and why the shape matters.</span></span>
+  </a>
+</div>
+
+<h2 id="agents">Give it to your agent</h2>
+<div class="install">
+  <div class="install-row">
+    <div class="install-text">
+      <h3>Claude skill</h3>
+      <p>Claude loads it whenever a task involves testing.</p>
+    </div>
+    <div class="cmd"><code id="cmd-skill">curl -fsSL {{baseUrl}}/skills/durable-testing/SKILL.md --create-dirs -o ~/.claude/skills/durable-testing/SKILL.md</code><button class="copy-mini" type="button" data-copy-el="cmd-skill" aria-label="Copy install command">{{copyIcon}}Copy</button></div>
+  </div>
+  <div class="install-row">
+    <div class="install-text">
+      <h3>AGENTS.md rules</h3>
+      <p>All {{ruleCount}} rules in one block, for <code>AGENTS.md</code>, <code>CLAUDE.md</code> or <code>.cursor/rules</code>.</p>
+    </div>
+    <div class="install-actions"><button class="copy-mini" type="button" data-copy-rules="all">{{copyIcon}}Copy all rules</button><a class="text-link" href="{{base}}/rules.md">rules.md</a></div>
+  </div>
+  <div class="install-row">
+    <div class="install-text">
+      <h3>Markdown</h3>
+      <p>Every page has a <code>.md</code> twin. Request any page with <code>Accept: text/markdown</code> to get it directly.</p>
+    </div>
+    <div class="install-actions"><a class="text-link" href="{{base}}/llms.txt">llms.txt</a><a class="text-link" href="{{base}}/llms-full.txt">llms-full.txt</a></div>
+  </div>
+</div>

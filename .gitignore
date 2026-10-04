@@ -31,6 +31,9 @@ pnpm-debug.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Durable Testing, built from durable-testing/ by `bun run testing:build`
+/public/testing/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

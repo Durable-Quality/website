@@ -1,0 +1,14 @@
+# Durable Quality
+
+> An independent software studio building Burn, OmniLens, and SpecProof. Quality assured software, built through a different lens.
+
+## Durable Testing
+
+- [Durable Testing](https://durableqa.xyz/testing/llms.txt): testing fundamentals for developers and AI agents: the 7 testing principles, the SDLC and STLC, and the test pyramid.
+- [Rules for agents](https://durableqa.xyz/testing/rules.md): the guide's testing rules in one block, for AGENTS.md or CLAUDE.md.
+
+## Products
+
+- [Burn](https://burnusage.xyz/): a macOS menu bar app that tracks Claude sessions and weekly limits in real time.
+- [OmniLens](https://www.omnilens.xyz/): an open-source dashboard for GitHub Actions: success rates, runtimes, and stability trends across every repository.
+- [SpecProof](https://specproofoss.vercel.app/): audits every OpenAPI operation against real test assertions, and fails the build when coverage drifts.

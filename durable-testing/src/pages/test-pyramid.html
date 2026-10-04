@@ -1,0 +1,51 @@
+<header class="page-head">
+  <h1>{{title}}<svg data-d="underline" viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true"></svg></h1>
+</header>
+  <div class="prose">
+    <p>Also called the <strong>test pyramid</strong>, popularised by Mike Cohn in <em>Succeeding with Agile</em> (2009). Write many small, fast, isolated tests at the bottom and a few broad, slow, realistic tests at the top. The higher a test sits, the more it costs to write, run and debug.</p>
+  </div>
+  <figure class="diagram canvas">
+    <div class="scroll"><svg data-d="pyramid" viewBox="0 0 900 400" style="min-width:680px" role="img" aria-label="Left: the test pyramid with many unit tests at the base, some integration tests in the middle and few UI or end-to-end tests at the top. Tests get slower and costlier toward the top. Right: the ice-cream cone anti-pattern, with mostly manual and end-to-end tests on top and few unit tests at the tip."></svg></div>
+    <figcaption>The shares are a rule of thumb, not a target. What matters is the direction: push each check down to the lowest level that can catch the defect.</figcaption>
+  </figure>
+
+  <h2 id="layers">The three layers</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Layer</th><th>Scope</th><th>Speed</th><th>Catches</th><th>Example tools</th></tr></thead>
+      <tbody>
+        <tr><td>Unit</td><td class="wrap">One function or class; dependencies faked</td><td>Milliseconds</td><td class="wrap">Logic errors, edge cases, regressions in isolated code</td><td class="wrap">Vitest, Jest, pytest, JUnit</td></tr>
+        <tr><td>Integration</td><td class="wrap">Several components, or code plus a real dependency (database, HTTP, queue)</td><td>Seconds</td><td class="wrap">Contract mismatches, wiring, serialisation and query bugs</td><td class="wrap">Testcontainers, Supertest, Pact</td></tr>
+        <tr><td>UI / E2E</td><td class="wrap">The whole system through the UI or public API, as a user would</td><td>Seconds to minutes</td><td class="wrap">Broken user journeys, configuration and deployment problems</td><td class="wrap">Playwright, Cypress, Selenium</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Why the shape works</h2>
+  <div class="prose">
+    <ul>
+    <li><strong>Feedback speed.</strong> Thousands of unit tests run in seconds, so developers run them on every save.</li>
+    <li><strong>Cost.</strong> Lower tests are cheaper to write and survive refactors of unrelated code.</li>
+    <li><strong>Reliability.</strong> Fewer moving parts mean fewer flaky failures from timing, network or test data.</li>
+    <li><strong>Diagnosis.</strong> A failing unit test points at one function. A failing E2E test points at the whole stack.</li>
+  </ul>
+  </div>
+
+  <h2 id="anti-patterns">Anti-patterns</h2>
+  <div class="prose">
+    <p><strong>The ice-cream cone</strong> inverts the pyramid: most effort goes into manual and E2E tests, with few unit tests underneath. The pipeline is slow, failures are flaky and hard to locate, and teams start ignoring red builds.</p>
+    <p><strong>The hourglass</strong> has plenty of unit and E2E tests but almost no integration tests, so the seams between components, where many real bugs live, go untested.</p>
+    <p><strong>Duplicate coverage</strong> asserts the same rule at every layer. It triples the maintenance cost without adding confidence.</p>
+  </div>
+
+  <h2 id="variants">Variants</h2>
+  <div class="prose">
+    <p><strong>Testing trophy</strong> (Kent C. Dodds) adds static analysis as the base and makes integration tests the largest layer. It suits front-end apps, where most bugs appear when components work together.</p>
+    <p><strong>Test honeycomb</strong> (Spotify) centres microservice testing on integration tests of each service through its real interfaces, with few implementation-detail tests.</p>
+    <p class="note">The right shape follows your architecture. The underlying rule does not change: prefer the fastest, most isolated test that can still catch the defect.</p>
+  </div>
+
+  <aside class="checklist" aria-label="Rules for agents">
+    <div class="checklist-head"><span>Rules for agents</span><button class="copy-mini" type="button" data-copy-rules="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8.5" y="8.5" width="12" height="12" rx="2.5"/><path d="M15.5 8.5V6a2.5 2.5 0 0 0-2.5-2.5H6A2.5 2.5 0 0 0 3.5 6v7A2.5 2.5 0 0 0 6 15.5h2.5"/></svg>Copy</button></div>
+    {{rules}}
+  </aside>
