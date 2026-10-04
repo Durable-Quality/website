@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.4.1] - 2026-10-04
+
+### Added
+- Build checks in Durable Testing: `durable-testing/build.mjs` now stops before writing anything if a page or the layout contains an em dash, or if a page's `.md` and `.html` versions have different sections. It lists every problem with its file, and line or section.
+- CI on GitHub Actions (`.github/workflows/ci.yml`): every pull request and push to `main` installs with Bun, builds the site (which also runs the build checks), typechecks and lints. It runs `bun test` once `tests/` contains tests.
+
+### Changed
+- The page cards on Durable Testing's overview are now a `<nav>` labelled "Pages", matching the Markdown's "Pages" section. They look the same.
+
 ## [0.4.0] - 2026-10-04
 
 ### Added

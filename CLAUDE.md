@@ -16,7 +16,7 @@ bun run typecheck # tsc --noEmit
 bun run format   # prettier --write "**/*.{ts,tsx}"
 ```
 
-There is no test suite.
+There is no test suite yet (see `TEST_PLAN.md`). CI (`.github/workflows/ci.yml`) runs build, typecheck and lint on every pull request. The build includes Durable Testing's checks, which fail on em dashes and on `.md`/`.html` section mismatches.
 
 ## Next.js version warning
 

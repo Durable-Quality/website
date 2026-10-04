@@ -65,10 +65,10 @@ Check the files the build writes.
 
 Make the build itself fail when:
 
-- [ ] A page contains an em dash
-  Proof: _pending_
-- [ ] A page's `.md` and `.html` versions have different headings
-  Proof: _pending_
+- [x] A page contains an em dash
+  Proof: [durable-testing/build.mjs](durable-testing/build.mjs) (`emDashProblems`)
+- [x] A page's `.md` and `.html` versions have different headings
+  Proof: [durable-testing/build.mjs](durable-testing/build.mjs) (`headingProblems`)
 
 ## 4. Browser smoke tests
 
@@ -81,5 +81,5 @@ Make the build itself fail when:
 
 ## 5. CI
 
-- [ ] Typecheck, lint and the tests run on every pull request
-  Proof: _pending_
+- [x] Typecheck, lint and the tests run on every pull request
+  Proof: [.github/workflows/ci.yml](.github/workflows/ci.yml)

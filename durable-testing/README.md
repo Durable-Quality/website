@@ -22,7 +22,7 @@ Each page is a pair in `src/pages/`:
 - `<slug>.md` holds the front matter (title, SEO title, description, skill hint, order) and the Markdown that agents receive. Its `## Rules for agents` list is the single source for that page's rules: the build puts them into the HTML page, `rules.md`, `llms-full.txt` and the skill.
 - `<slug>.html` holds the visual page. `{{rules}}` marks where the rules list goes, and `{{base}}` is the guide's path (`/durable-testing`). Diagrams are `<svg data-d="name">` placeholders, drawn by `src/assets/site.js`.
 
-When you change prose, change it in both files. To add a page, add a new pair with the next `order`. Navigation, the sitemap, `llms.txt` and the skill all pick it up.
+When you change prose, change it in both files. The build checks this: it stops if a page's `.md` and `.html` have different `##` sections (an `<h2>`, or an `<aside>`, `<nav>` or `<section>` whose `aria-label` names the section, such as the "Rules for agents" checklist). It also stops if any page or `src/layout.html` contains an em dash. To add a page, add a new pair with the next `order`. Navigation, the sitemap, `llms.txt` and the skill all pick it up.
 
 `site.config.json` holds `baseUrl`. Canonical URLs, the sitemap, the skill and the `public/` folder the guide builds into all come from it. `SITE_URL=… bun run testing:build` overrides it.
 
