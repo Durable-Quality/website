@@ -16,6 +16,7 @@
 - `data-track` events on Durable Testing: `copy_page`, `copy_rules`, `copy_skill_install`, `view_markdown`, `open_in_claude`, `open_in_chatgpt`, `open_agent_file`, `theme_change`, `accent_change` and `home_click`.
 
 ### Changed
+- Durable Testing's link preview: the Open Graph image now reads "Durable Testing" instead of "QA Field Guide", and the description is shortened to "Software testing fundamentals for developers and AI agents."
 - The Durable Quality logo is now the supplied image (`icon.png`, white on black) everywhere, shown exactly as delivered, replacing the SVG the landing page drew in the theme's text color. Durable Testing's favicon uses the same image, replacing its redrawn `favicon.svg`.
 - The landing page now uses Durable Testing's type: Geist and Geist Mono replace IBM Plex Sans and Mono, and headings (and the header wordmark) are set in bold Geist with tight tracking instead of monospace. Labels and the guide and Substack card titles stay monospace; the product ticker and product card titles are now Geist too.
 - Durable Testing's header now reads "Durable Quality" instead of "Durable Testing", and links back to the landing page instead of the guide's home. Its dark theme now has the landing page's black background (`#000000`) instead of `#0e1014`.

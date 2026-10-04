@@ -1,6 +1,6 @@
 ---
 title: Durable Testing
-description: Software testing fundamentals for developers and AI agents. The 7 testing principles, the SDLC and STLC, and the test pyramid, with hand-drawn diagrams and rules agents can follow.
+description: Software testing fundamentals for developers and AI agents.
 order: 0
 ---
 
