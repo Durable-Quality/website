@@ -29,46 +29,46 @@ When an item is done, tick it and replace `Proof: _pending_` with a link to the 
 
 ## 1. Routing
 
-Check that the guide's URLs behave correctly on a running server.
+Check that the guide's URLs behave correctly on a running server. The tests start `next start` on the production build, so run `bun run build` first. Set `ROUTING_BASE_URL` to test a deployed site instead.
 
-- [ ] Clean URLs load the page
-  Proof: _pending_
-- [ ] Old `.html` URLs redirect to the clean URL
-  Proof: _pending_
-- [ ] Agents asking for Markdown get Markdown
-  Proof: _pending_
-- [ ] The headers are set (`Vary`, `Link`, CORS)
-  Proof: _pending_
-- [ ] Unknown pages return 404
-  Proof: _pending_
-- [ ] `robots.txt` and `llms.txt` load
-  Proof: _pending_
-- [ ] The routing tests also run against the live site after each deploy
-  Proof: _pending_
+- [x] Clean URLs load the page
+  Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("clean URLs")`)
+- [x] Old `.html` URLs redirect to the clean URL
+  Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("redirects")`)
+- [x] Agents asking for Markdown get Markdown
+  Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("Markdown negotiation")`)
+- [x] The headers are set (`Vary`, `Link`, CORS)
+  Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("headers")`)
+- [x] Unknown pages return 404
+  Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("404s")`)
+- [x] `robots.txt` and `llms.txt` load
+  Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("robots.txt and llms.txt")`)
+- [x] The routing tests also run against the live site after each deploy
+  Proof: [.github/workflows/post-deploy.yml](.github/workflows/post-deploy.yml)
 
 ## 2. Build output
 
 Check the files the build writes.
 
-- [ ] Every link points to a file that exists
-  Proof: _pending_
-- [ ] No unfilled `{{placeholders}}` are left
-  Proof: _pending_
-- [ ] Structured data (JSON-LD) is valid
-  Proof: _pending_
-- [ ] Each page's rules are the same everywhere they appear
-  Proof: _pending_
-- [ ] The Claude skill file is valid
-  Proof: _pending_
+- [x] Every link points to a file that exists
+  Proof: [tests/build-output.test.ts](tests/build-output.test.ts) (`describe("links")`)
+- [x] No unfilled `{{placeholders}}` are left
+  Proof: [tests/build-output.test.ts](tests/build-output.test.ts) (`describe("placeholders")`)
+- [x] Structured data (JSON-LD) is valid
+  Proof: [tests/build-output.test.ts](tests/build-output.test.ts) (`describe("structured data")`)
+- [x] Each page's rules are the same everywhere they appear
+  Proof: [tests/build-output.test.ts](tests/build-output.test.ts) (`describe("rules")`)
+- [x] The Claude skill file is valid
+  Proof: [tests/build-output.test.ts](tests/build-output.test.ts) (`describe("Claude skill")`)
 
 ## 3. Build checks
 
 Make the build itself fail when:
 
-- [ ] A page contains an em dash
-  Proof: _pending_
-- [ ] A page's `.md` and `.html` versions have different headings
-  Proof: _pending_
+- [x] A page contains an em dash
+  Proof: [durable-testing/build.mjs](durable-testing/build.mjs) (`emDashProblems`)
+- [x] A page's `.md` and `.html` versions have different headings
+  Proof: [durable-testing/build.mjs](durable-testing/build.mjs) (`headingProblems`)
 
 ## 4. Browser smoke tests
 
@@ -81,5 +81,5 @@ Make the build itself fail when:
 
 ## 5. CI
 
-- [ ] Typecheck, lint and the tests run on every pull request
-  Proof: _pending_
+- [x] Typecheck, lint and the tests run on every pull request
+  Proof: [.github/workflows/ci.yml](.github/workflows/ci.yml)

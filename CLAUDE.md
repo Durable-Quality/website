@@ -14,9 +14,11 @@ bun start        # serve production build
 bun run lint     # eslint (flat config, next core-web-vitals + typescript)
 bun run typecheck # tsc --noEmit
 bun run format   # prettier --write "**/*.{ts,tsx}"
+bun run test     # bun test: rebuilds Durable Testing, checks its output and routing (needs `bun run build`)
+bun run test:routing # routing only; ROUTING_BASE_URL=https://durableqa.xyz tests the live site
 ```
 
-There is no test suite.
+Tests live in `tests/` and use `bun test` (see `TEST_PLAN.md` for what's covered and what's left). `tests/guide.ts` rebuilds Durable Testing once per run and exposes its output; `tests/build-output.test.ts` checks links, placeholders, JSON-LD, rules and the Claude skill; `tests/routing.test.ts` starts `next start` on the production build and checks clean URLs, redirects, Markdown negotiation, headers and 404s. CI (`.github/workflows/ci.yml`) runs build, typecheck, lint and tests on every pull request, and `.github/workflows/post-deploy.yml` runs the routing tests against durableqa.xyz after each production deploy on Vercel. The build itself also fails on em dashes and on `.md`/`.html` section mismatches in the guide.
 
 ## Next.js version warning
 

@@ -101,6 +101,56 @@ const pages = readdirSync(join(src, "pages"))
   .sort((a, b) => a.order - b.order);
 
 if (pages[0]?.slug !== "index") throw new Error("src/pages/index.md must exist and have order 0");
+
+// ---------- checks ----------
+
+// The guide follows the studio's writing rules: no em dashes, in any spelling.
+const emDash = /—|&mdash;|&#8212;|&#x2014;/i;
+
+function emDashProblems(file) {
+  return readFileSync(join(src, file), "utf8")
+    .split("\n")
+    .flatMap((line, i) => (emDash.test(line) ? [`${file}:${i + 1}: em dash, use a colon, comma or period instead`] : []));
+}
+
+// A page's Markdown twin and its HTML must have the same sections, in the same order: each
+// `## ` heading against each <h2>, or against the aria-label of an <aside>, <nav> or <section>
+// that stands in for one (the "Rules for agents" checklist, the overview's page cards).
+// Tags, entities and leading numbers are ignored, since the HTML styles the numbers.
+const plain = (s) =>
+  s
+    .replace(/<[^>]+>/g, "")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&amp;/g, "&")
+    .replace(/[‘’]/g, "'")
+    .replace(/^\d+\.?\s*/, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+function headingProblems(p) {
+  const md = [...p.body.replace(/^```[\s\S]*?^```/gm, "").matchAll(/^## (.+)$/gm)].map((m) => plain(m[1]));
+  const html = [
+    ...p.html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>|<(?:aside|nav|section)\b[^>]*\saria-label="([^"]+)"/g),
+  ].map((m) => plain(m[1] ?? m[2]));
+  const problems = [];
+  for (let i = 0; i < Math.max(md.length, html.length); i++) {
+    if (md[i] !== html[i]) {
+      problems.push(`pages/${p.slug}: section ${i + 1} is "${md[i] ?? "(none)"}" in .md but "${html[i] ?? "(none)"}" in .html`);
+    }
+  }
+  return problems;
+}
+
+const problems = [
+  ...[...readdirSync(join(src, "pages")).map((f) => `pages/${f}`), "layout.html"].flatMap(emDashProblems),
+  ...pages.flatMap(headingProblems),
+];
+if (problems.length) {
+  throw new Error(`Durable Testing failed ${problems.length} check(s):\n${problems.map((s) => `  ${s}`).join("\n")}`);
+}
+
 const guide = pages.filter((p) => p.slug !== "index");
 for (const p of pages) p.updated = lastModified(p);
 

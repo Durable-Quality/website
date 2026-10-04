@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.4.1] - 2026-10-04
+
+### Added
+- Durable Testing's build fails on em dashes and on `.md`/`.html` section mismatches.
+- Tests for the guide's build output (`bun run test`): links, placeholders, JSON-LD, rules and the Claude skill.
+- CI that builds, typechecks, lints and tests every pull request.
+- Routing tests for the guide (clean URLs, redirects, Markdown negotiation, headers, 404s), run in CI and against the live site after each production deploy.
+
+### Changed
+- The guide overview's page cards are now a `<nav>` labelled "Pages".
+
 ## [0.4.0] - 2026-10-04
 
 ### Added
