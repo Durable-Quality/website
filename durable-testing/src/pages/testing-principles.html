@@ -1,0 +1,74 @@
+<header class="page-head">
+  <h1>{{title}}<svg data-d="underline" viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true"></svg></h1>
+</header>
+  <div class="prose"><p>Codified by the ISTQB, these seven principles hold for any language, framework or methodology. Treat them as constraints: a test strategy that ignores one of them will fail in a predictable way.</p></div>
+
+  <div class="principles" style="margin-top:20px">
+    <article class="principle">
+      <div class="principle-body">
+        <h2 id="p1" data-toc="Presence, not absence"><span class="pnum">1</span>Testing shows the presence of defects, not their absence</h2>
+        <p>Testing lowers the probability that defects remain. A green suite proves the tested paths work under the tested conditions. It never proves the software is correct.</p>
+        <p class="apply"><strong>Example.</strong> “42 checks passed, covering checkout and three payment errors. Refunds were not tested.”</p>
+      </div>
+      <figure class="sketch canvas"><svg data-d="p1" viewBox="0 0 260 150" role="img" aria-label="A magnifying glass over part of an app finds two bugs; three more bugs sit outside it, unseen."></svg></figure>
+    </article>
+
+    <article class="principle">
+      <div class="principle-body">
+        <h2 id="p2" data-toc="Exhaustive testing is impossible"><span class="pnum">2</span>Exhaustive testing is impossible</h2>
+        <p>Inputs, states, orderings and environments multiply. A form with five fields of ten values each has 100,000 combinations before you consider timing, browsers or data.</p>
+        <p class="apply"><strong>Techniques.</strong> Equivalence partitioning, boundary value analysis, pairwise testing and decision tables.</p>
+      </div>
+      <figure class="sketch canvas"><svg data-d="p2" viewBox="0 0 260 150" role="img" aria-label="A grid of 40 possible input combinations with only seven selected for testing."></svg></figure>
+    </article>
+
+    <article class="principle">
+      <div class="principle-body">
+        <h2 id="p3" data-toc="Early testing"><span class="pnum">3</span>Early testing saves time and money</h2>
+        <p>A defect caught in a requirement costs a conversation. The same defect caught in production costs a hotfix, a rollback and user trust. Testing activities should start as soon as there is something to review. This is what “shift left” means.</p>
+        <p class="apply"><strong>In practice.</strong> Testability reviews, acceptance criteria before code, and static analysis plus unit tests on every commit.</p>
+      </div>
+      <figure class="sketch canvas"><svg data-d="p3" viewBox="0 0 260 150" role="img" aria-label="Bar chart: the relative cost of fixing a defect rises from requirements through design, code and test to production."></svg></figure>
+    </article>
+
+    <article class="principle">
+      <div class="principle-body">
+        <h2 id="p4" data-toc="Defects cluster"><span class="pnum">4</span>Defects cluster together</h2>
+        <p>A small number of modules usually hold most of the defects, often close to the Pareto split of roughly 80% of defects in 20% of modules.</p>
+        <p class="apply"><strong>Where to look.</strong> Modules with high complexity, recent churn, unclear ownership or a history of defects.</p>
+      </div>
+      <figure class="sketch canvas"><svg data-d="p4" viewBox="0 0 260 150" role="img" aria-label="Six modules; the payments module contains five bugs while the others have one or none."></svg></figure>
+    </article>
+
+    <article class="principle">
+      <div class="principle-body">
+        <h2 id="p5" data-toc="Tests wear out"><span class="pnum">5</span>Tests wear out</h2>
+        <p>Running the same tests over and over finds fewer new defects each time. They still catch regressions, but they stop discovering anything. Older syllabi call this the pesticide paradox.</p>
+        <p class="apply"><strong>Techniques.</strong> Property-based testing, exploratory sessions, and mutation testing to find tests that no longer catch anything.</p>
+      </div>
+      <figure class="sketch canvas"><svg data-d="p5" viewBox="0 0 260 150" role="img" aria-label="A worn path that tests follow on every run, with bugs living just off the path."></svg></figure>
+    </article>
+
+    <article class="principle">
+      <div class="principle-body">
+        <h2 id="p6" data-toc="Context dependent"><span class="pnum">6</span>Testing is context dependent</h2>
+        <p>A medical device, a banking API and a mobile game need different techniques, rigour and coverage. There is no single correct test strategy.</p>
+        <p class="apply"><strong>Inputs to the strategy.</strong> Risk, regulation, users and release cadence.</p>
+      </div>
+      <figure class="sketch canvas"><svg data-d="p6" viewBox="0 0 260 150" role="img" aria-label="Three products need different testing rigour: a medical device high, a banking API medium-high, a mobile game lower."></svg></figure>
+    </article>
+
+    <article class="principle">
+      <div class="principle-body">
+        <h2 id="p7" data-toc="Absence-of-errors fallacy"><span class="pnum">7</span>Absence-of-errors fallacy</h2>
+        <p>Software that passes every test can still fail if it solves the wrong problem or is hard to use. Verification asks whether you built it right. Validation asks whether you built the right thing.</p>
+        <p class="apply"><strong>Techniques.</strong> Stakeholder acceptance testing, usability checks, beta feedback and product analytics.</p>
+      </div>
+      <figure class="sketch canvas"><svg data-d="p7" viewBox="0 0 260 150" role="img" aria-label="A release with 312 passing tests and zero open bugs, and a user saying it is not what they needed."></svg></figure>
+    </article>
+  </div>
+
+  <aside class="checklist" aria-label="Rules for agents">
+    <div class="checklist-head"><span>Rules for agents</span><button class="copy-mini" type="button" data-copy-rules="page" data-track="copy_rules" data-location="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8.5" y="8.5" width="12" height="12" rx="2.5"/><path d="M15.5 8.5V6a2.5 2.5 0 0 0-2.5-2.5H6A2.5 2.5 0 0 0 3.5 6v7A2.5 2.5 0 0 0 6 15.5h2.5"/></svg>Copy</button></div>
+    {{rules}}
+  </aside>

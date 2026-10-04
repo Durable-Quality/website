@@ -1,11 +1,12 @@
 {
   "name": "dq-site",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "bun run testing:build && next dev",
+    "build": "bun run testing:build && next build",
+    "testing:build": "node durable-testing/build.mjs",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",

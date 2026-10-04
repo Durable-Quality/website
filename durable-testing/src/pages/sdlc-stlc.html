@@ -1,0 +1,75 @@
+<header class="page-head">
+  <h1>{{title}}<svg data-d="underline" viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true"></svg></h1>
+</header>
+  <div class="prose">
+    <p>The <strong>Software Development Life Cycle (SDLC)</strong> describes how software is planned, built, released and maintained. The <strong>Software Testing Life Cycle (STLC)</strong> describes how it is tested. STLC runs inside SDLC, and it starts when requirements exist, not when code is finished.</p>
+  </div>
+  <div class="table-wrap" style="margin-top:20px">
+    <table class="tight">
+      <thead><tr><th>Aspect</th><th>SDLC</th><th>STLC</th></tr></thead>
+      <tbody>
+        <tr><td>Focus</td><td>Building the product</td><td>Verifying and validating the product</td></tr>
+        <tr><td>Owner</td><td>The whole team: product, design, engineering</td><td>QA and test engineers, together with developers</td></tr>
+        <tr><td>Starts</td><td>With a business need or idea</td><td>As soon as requirements exist</td></tr>
+        <tr><td>Output</td><td>Working software</td><td>Evidence of quality: results, defects, a closure report</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="sdlc" data-toc="SDLC phases">SDLC: the six phases</h2>
+  <figure class="diagram canvas">
+    <div class="scroll"><svg data-d="sdlc" viewBox="0 0 640 400" style="min-width:540px;max-width:640px" role="img" aria-label="The SDLC as a loop: Requirements, Design, Implementation, Testing, Deployment, Maintenance, then back to Requirements."></svg></div>
+  </figure>
+  <div class="table-wrap" style="margin-top:18px">
+    <table>
+      <thead><tr><th>Phase</th><th>Goal</th><th>Key outputs</th><th>Quality activities</th></tr></thead>
+      <tbody>
+        <tr><td><span class="n">1</span>Requirements</td><td class="wrap">Decide what to build and why</td><td class="wrap">User stories, acceptance criteria</td><td class="wrap">Review for ambiguity, testability and missing edge cases</td></tr>
+        <tr><td><span class="n">2</span>Design</td><td class="wrap">Decide how to build it</td><td class="wrap">Architecture, data models, API contracts</td><td class="wrap">Design reviews, threat modelling, testable interfaces</td></tr>
+        <tr><td><span class="n">3</span>Implementation</td><td class="wrap">Build it</td><td class="wrap">Source code, unit tests</td><td class="wrap">Code review, static analysis, unit tests, TDD</td></tr>
+        <tr><td><span class="n">4</span>Testing</td><td class="wrap">Verify and validate it</td><td class="wrap">Test results, defect reports</td><td class="wrap">Integration, system, regression and acceptance testing</td></tr>
+        <tr><td><span class="n">5</span>Deployment</td><td class="wrap">Release it to users</td><td class="wrap">Release build, release notes</td><td class="wrap">Smoke tests, canary checks, a tested rollback plan</td></tr>
+        <tr><td><span class="n">6</span>Maintenance</td><td class="wrap">Operate and improve it</td><td class="wrap">Patches, enhancements</td><td class="wrap">Monitoring, incident analysis, regression tests for fixes</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note" style="margin-top:18px">Every SDLC model uses these phases. Waterfall runs them once, in order. Agile runs the whole loop every sprint. The V-model pairs each build phase with a test level. DevOps compresses the loop with CI/CD so it can run many times a day.</p>
+
+  <h2 id="stlc" data-toc="STLC phases">STLC: the six phases</h2>
+  <figure class="diagram canvas">
+    <div class="scroll"><svg data-d="stlc" viewBox="0 0 890 260" style="min-width:700px" role="img" aria-label="STLC pipeline: 1 Requirement analysis, 2 Test planning, 3 Test case development, 4 Environment setup, 5 Test execution, 6 Test cycle closure. Phases 3 and 4 often run in parallel. Execution loops with development: defect, fix, retest."></svg></div>
+    <figcaption><b>Entry criteria</b> say when a phase may start. <b>Exit criteria</b> say when it is done. Write both down and check them before moving on.</figcaption>
+  </figure>
+  <div class="table-wrap" style="margin-top:18px">
+    <table>
+      <thead><tr><th>Phase</th><th>Entry criteria</th><th>Activities</th><th>Deliverables</th></tr></thead>
+      <tbody>
+        <tr><td><span class="n">1</span>Requirement analysis</td><td class="wrap">Requirements or stories are available</td><td class="wrap">Identify testable requirements, raise questions, define scope, assess automation</td><td class="wrap">Requirements traceability matrix (RTM), clarified questions</td></tr>
+        <tr><td><span class="n">2</span>Test planning</td><td class="wrap">Requirements analysed</td><td class="wrap">Choose strategy, scope, tools, roles, schedule; assess risks; estimate effort</td><td class="wrap">Test plan, effort estimate</td></tr>
+        <tr><td><span class="n">3</span>Test case development</td><td class="wrap">Test plan approved</td><td class="wrap">Write test cases and automation scripts, prepare test data, peer review</td><td class="wrap">Reviewed test cases, test data, scripts</td></tr>
+        <tr><td><span class="n">4</span>Environment setup</td><td class="wrap">Architecture known; often parallel to phase 3</td><td class="wrap">Provision environments, seed data and accounts, smoke-test the environment</td><td class="wrap">Ready environment, smoke-test results</td></tr>
+        <tr><td><span class="n">5</span>Test execution</td><td class="wrap">Test cases, environment and a testable build are ready</td><td class="wrap">Run tests, log defects, retest fixes, run regression</td><td class="wrap">Execution report, defect reports, updated RTM</td></tr>
+        <tr><td><span class="n">6</span>Test cycle closure</td><td class="wrap">Execution done or exit criteria met</td><td class="wrap">Evaluate coverage against exit criteria, collect metrics, hold a retrospective</td><td class="wrap">Test closure report, lessons learned</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="v-model" data-toc="The V-model">How they fit together: the V-model</h2>
+  <div class="prose"><p>The V-model makes the link between the two lifecycles explicit. Each build phase on the left produces the basis for a test level on the right. Tests for a level are designed when its partner phase finishes, long before they run.</p></div>
+  <figure class="diagram canvas">
+    <div class="scroll"><svg data-d="vmodel" viewBox="0 0 760 420" style="min-width:600px" role="img" aria-label="V-model. Left arm going down: Requirements, System design, Architecture design, Module design, ending in Coding at the bottom. Right arm going up: Unit testing, Integration testing, System testing, Acceptance testing. Each left phase is paired with the test level opposite it."></svg></div>
+    <figcaption>Requirements pair with acceptance testing, system design with system testing, architecture with integration testing, and module design with unit testing.</figcaption>
+  </figure>
+  <div class="prose" style="margin-top:20px">
+    <ul>
+    <li><strong>During requirements</strong>, analyse testability and draft acceptance tests.</li>
+    <li><strong>During design</strong>, plan system and integration tests against the contracts.</li>
+    <li><strong>During implementation</strong>, write unit tests with the code, and prepare environments and data.</li>
+    <li><strong>During testing</strong>, execute, log defects and retest. <strong>At release</strong>, smoke test and close the cycle.</li>
+  </ul>
+  </div>
+
+  <aside class="checklist" aria-label="Rules for agents">
+    <div class="checklist-head"><span>Rules for agents</span><button class="copy-mini" type="button" data-copy-rules="page" data-track="copy_rules" data-location="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8.5" y="8.5" width="12" height="12" rx="2.5"/><path d="M15.5 8.5V6a2.5 2.5 0 0 0-2.5-2.5H6A2.5 2.5 0 0 0 3.5 6v7A2.5 2.5 0 0 0 6 15.5h2.5"/></svg>Copy</button></div>
+    {{rules}}
+  </aside>

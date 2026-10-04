@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.4.0] - 2026-10-04
+
+### Added
+- Durable Testing at `/durable-testing`: testing fundamentals for developers and AI agents, covering the 7 testing principles, the SDLC and STLC, and the test pyramid, with hand-drawn diagrams and rules agents can follow. It is a static site built from `durable-testing/` into `public/durable-testing/` before every `dev` and `build`, and it keeps its own look and light/dark toggle, separate from the landing page.
+- Agent-readable versions of the guide: every page has a Markdown twin at `/durable-testing/<page>.md`, also returned when a page is requested with `Accept: text/markdown`, plus `/durable-testing/rules.md`, `/durable-testing/llms.txt`, `/durable-testing/llms-full.txt`, and a Claude skill at `/durable-testing/skills/durable-testing/SKILL.md`.
+- `robots.txt`, which allows every crawler, names the AI crawlers explicitly, and points to the guide's sitemap.
+- A root `/llms.txt` describing the studio, its products, and the guide.
+- A "Durable Testing" section on the landing page, between the products and Substack, with a card for each guide page and a "Read Durable Testing" button to `/durable-testing`.
+- A "Durable Testing" button in the site header, before "Get in touch", linking to `/durable-testing`. It is hidden on phones, where the header has no room; the footer link and the landing section still reach the guide there.
+- A "Durable Testing" link in the site footer, opposite the copyright line, so the guide is reachable from every page of the landing site.
+- Databuddy analytics on the guide's pages, with the same client ID as the landing page.
+- Click tracking in Databuddy on both the landing page and Durable Testing. The script now also sends named events for clicks on elements tagged with `data-track`, logs clicks on links to other sites, and reports JavaScript errors.
+- `data-track` events on the landing page: `product_click` (with `product` and `badge`), `durable_testing_click`, `substack_click`, `get_in_touch_click` and `x_follow_click`, each with a `location` such as `header`, `card` or `footer`.
+- `data-track` events on Durable Testing: `copy_page`, `copy_rules`, `copy_skill_install`, `view_markdown`, `open_in_claude`, `open_in_chatgpt`, `open_agent_file`, `theme_change`, `accent_change` and `home_click`.
+
+### Changed
+- The Durable Quality logo is now the supplied image (`icon.png`, white on black) everywhere, shown exactly as delivered, replacing the SVG the landing page drew in the theme's text color. Durable Testing's favicon uses the same image, replacing its redrawn `favicon.svg`.
+- The landing page now uses Durable Testing's type: Geist and Geist Mono replace IBM Plex Sans and Mono, and headings (and the header wordmark) are set in bold Geist with tight tracking instead of monospace. Labels and the guide and Substack card titles stay monospace; the product ticker and product card titles are now Geist too.
+- Durable Testing's header now reads "Durable Quality" instead of "Durable Testing", and links back to the landing page instead of the guide's home. Its dark theme now has the landing page's black background (`#000000`) instead of `#0e1014`.
+- The "Read Durable Testing" button is centered under the guide cards, with the same spacing as "Read on Substack".
+- `metadataBase` now points at `https://durableqa.xyz`, the live domain, replacing `https://durable-quality.vercel.app`, so Open Graph image URLs resolve to the live site.
+
+### Removed
+- The logo from the headers of both the landing page and Durable Testing; each header now shows only its name. The logo stays in the landing page's hero and contact sections, and as Durable Testing's favicon.
+- The hero's grid-paper backdrop (and the unused `bg-blueprint` utility), so the logo image's black square no longer stands out against the grid.
+
 ## [0.3.0] - 2026-09-22
 
 ### Added

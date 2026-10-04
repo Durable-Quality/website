@@ -22,6 +22,7 @@ export default function Page() {
         <Hero />
         <Ticker />
         <Products />
+        <DurableTesting />
         <Substack />
         <Contact />
       </main>
@@ -47,17 +48,12 @@ function Crosshair({ className }: { className?: string }) {
 function Hero() {
   return (
     <section className="relative overflow-hidden border-b">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-blueprint [mask-image:linear-gradient(to_bottom,black_0%,transparent_85%)] opacity-50"
-      />
       <Crosshair className="top-6 left-6" />
       <Crosshair className="top-6 right-6" />
       <div className="relative grid items-center gap-10 px-6 pt-20 pb-16 md:px-10 md:pt-28 md:pb-24 lg:grid-cols-[1fr_auto] lg:gap-16">
         <div className="flex max-w-2xl flex-col items-start gap-8">
-          <h1 className="font-mono text-4xl leading-[1.08] font-semibold tracking-tight text-balance md:text-6xl">
-            Quality assured{" "}
-            <span className="text-muted-foreground">software.</span>
+          <h1 className="font-heading text-4xl leading-[1.08] font-bold tracking-[-0.03em] text-balance md:text-6xl">
+            Quality assured software.
           </h1>
           <p className="max-w-md text-base leading-relaxed text-muted-foreground">
             Most software is built, then checked. We build through a different
@@ -72,7 +68,11 @@ function Hero() {
           <Crosshair className="top-0 right-0" />
           <Crosshair className="bottom-0 left-0" />
           <Crosshair className="right-0 bottom-0" />
-          <LogoMark className="size-40 md:size-56 lg:size-72 xl:size-80" />
+          <LogoMark
+            className="size-40 md:size-56 lg:size-72 xl:size-80"
+            sizes="320px"
+            loading="eager"
+          />
         </div>
       </div>
     </section>
@@ -116,7 +116,7 @@ function Ticker() {
                       )}
                     />
                   </span>
-                  <span className="font-mono text-base">{product.name}</span>
+                  <span className="text-base">{product.name}</span>
                 </li>
               ))
             )}
@@ -188,7 +188,7 @@ function Products() {
       className="scroll-mt-16 border-b px-6 py-20 md:px-10"
     >
       <div className="mb-12 flex flex-col gap-4">
-        <h2 className="font-mono text-3xl font-semibold tracking-tight md:text-4xl">
+        <h2 className="font-heading text-3xl font-bold tracking-[-0.02em] md:text-4xl">
           Three tools.
           <br className="md:hidden" /> One standard.
         </h2>
@@ -237,7 +237,7 @@ function Products() {
                     </span>
                   )}
                 </div>
-                <CardTitle className="flex items-center gap-2 font-mono text-sm font-medium tracking-[0.15em]">
+                <CardTitle className="flex items-center gap-2 text-base font-semibold">
                   {product.title}
                   {product.href && (
                     <>
@@ -267,6 +267,9 @@ function Products() {
               href={product.href}
               target="_blank"
               rel="noreferrer"
+              data-track="product_click"
+              data-product={product.title.toLowerCase()}
+              data-badge={product.badge}
               className="group block h-full"
             >
               {card}
@@ -282,6 +285,99 @@ function Products() {
   )
 }
 
+// Plain anchors, not next/link: /durable-testing is the static Durable Testing guide in
+// public/durable-testing, not a route of this app. The images are the guide's overview
+// drawings, pre-rendered as static SVGs in its dark palette so this page needs
+// no script to draw them.
+const durableTestingPages = [
+  {
+    image: "/testing-overview/testing-principles.svg",
+    title: "The 7 testing principles",
+    href: "/durable-testing/testing-principles",
+    description:
+      "Seven constraints every test strategy lives inside, from risk-based testing to the absence-of-errors fallacy.",
+  },
+  {
+    image: "/testing-overview/sdlc-stlc.svg",
+    title: "SDLC & STLC",
+    href: "/durable-testing/sdlc-stlc",
+    description:
+      "How software gets built, how it gets tested, and where the two meet in the V-model.",
+  },
+  {
+    image: "/testing-overview/test-pyramid.svg",
+    title: "The testing triangle",
+    href: "/durable-testing/test-pyramid",
+    description:
+      "How many unit, integration and E2E tests to write, and why the shape matters.",
+  },
+]
+
+function DurableTesting() {
+  return (
+    <section id="testing" className="scroll-mt-16 border-b px-6 py-20 md:px-10">
+      <div className="mb-12 flex flex-col items-start gap-4">
+        <h2 className="font-heading text-3xl font-bold tracking-[-0.02em] md:text-4xl">
+          Durable Testing
+        </h2>
+        <p className="text-base leading-relaxed text-pretty text-muted-foreground">
+          The core ideas behind software testing, written for developers and the
+          AI agents that work alongside them.
+        </p>
+      </div>
+      <div className="mb-6 grid gap-6 md:grid-cols-3">
+        {durableTestingPages.map((page) => (
+          <a
+            key={page.href}
+            href={page.href}
+            data-track="durable_testing_click"
+            data-location="card"
+            data-page={page.href.split("/").pop()}
+            className="group block h-full"
+          >
+            <Card className="h-full pt-0 transition-shadow duration-200 group-hover:ring-foreground/25">
+              <div className="border-b bg-muted/40 bg-[radial-gradient(var(--color-border)_1px,transparent_1.3px)] bg-size-[18px_18px] px-2.5 py-2">
+                <Image
+                  src={page.image}
+                  alt=""
+                  width={240}
+                  height={140}
+                  unoptimized
+                  className="h-auto w-full"
+                />
+              </div>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base font-semibold">
+                  {page.title}
+                  <ArrowUpRight
+                    className="size-3.5 text-foreground"
+                    aria-hidden="true"
+                  />
+                </CardTitle>
+                <CardDescription className="leading-relaxed">
+                  {page.description}
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </a>
+        ))}
+      </div>
+      <div className="flex justify-center">
+        <Button
+          size="lg"
+          nativeButton={false}
+          render={<a href="/durable-testing" />}
+          data-track="durable_testing_click"
+          data-location="section_button"
+        >
+          Read Durable Testing
+          <ArrowUpRight data-icon="inline-end" />
+        </Button>
+      </div>
+    </section>
+  )
+}
+
 const substackPosts = [
   {
     title: "Agentic or not, here it comes",
@@ -292,13 +388,6 @@ const substackPosts = [
     image:
       "https://substackcdn.com/image/fetch/$s_!-oll!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Facd73480-5618-46f4-bb19-9f4936259abf_2051x767.png",
   },
-  {
-    title: "Coming soon",
-    excerpt: "The next article is in the works. Subscribe to get it first.",
-    date: null,
-    href: null,
-    image: null,
-  },
 ]
 
 function Substack() {
@@ -308,14 +397,19 @@ function Substack() {
       className="scroll-mt-16 border-b px-6 py-20 md:px-10"
     >
       <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
-        <h2 className="font-mono text-3xl font-semibold tracking-tight md:text-4xl">
+        <h2 className="font-heading text-3xl font-bold tracking-[-0.02em] md:text-4xl">
           Substack
         </h2>
         <p className="text-base leading-relaxed text-pretty text-muted-foreground">
           Articles on engineering Durable Quality in today&apos;s agentic
           landscape.
         </p>
-        <div className="grid w-full gap-6 text-left sm:grid-cols-2">
+        <div
+          className={cn(
+            "grid w-full gap-6 text-left",
+            substackPosts.length > 1 ? "sm:grid-cols-2" : "max-w-sm"
+          )}
+        >
           {substackPosts.map((post) => {
             const card = (
               <Card className="relative isolate h-full min-h-56 transition-[transform,box-shadow] duration-200 group-hover:scale-[1.03] group-hover:ring-foreground/25 motion-reduce:scale-100 motion-reduce:transition-none">
@@ -380,6 +474,8 @@ function Substack() {
                 href={post.href}
                 target="_blank"
                 rel="noreferrer"
+                data-track="substack_click"
+                data-location="post"
                 className="group block h-full"
               >
                 {card}
@@ -401,6 +497,8 @@ function Substack() {
               rel="noreferrer"
             />
           }
+          data-track="substack_click"
+          data-location="section_button"
         >
           <SubstackIcon data-icon="inline-start" className="text-[#FF6719]" />
           Read on Substack
@@ -425,14 +523,13 @@ function Contact() {
       {/* No `max-w-2xl` here: it wrapped the headline at every width. The logo
           and buttons are centered regardless. */}
       <div className="mx-auto flex flex-col items-center gap-8 text-center">
-        <LogoMark className="size-20 md:size-24" />
-        {/* The heading is monospace, so its width is a fixed multiple of the
-            font size (~12.6em for these 22 characters). Scaling with `vw`
-            therefore keeps it on one line at a steady share of the section's
+        <LogoMark className="size-20 md:size-24" sizes="96px" />
+        {/* The heading's width is a fixed multiple of its font size, so
+            scaling with `vw` keeps it on one line at a steady share of the section's
             inner width, and the `clamp` ceiling stops it growing once `main`
             hits `max-w-6xl`. It still wraps to two balanced lines on phones,
             where a single line would be unreadably small. */}
-        <h2 className="font-mono text-[clamp(1.875rem,5vw,3.75rem)] font-semibold tracking-tight text-balance">
+        <h2 className="font-heading text-[clamp(1.875rem,5vw,3.75rem)] font-bold tracking-[-0.02em] text-balance">
           Build with confidence.
         </h2>
         <div className="flex flex-wrap items-center justify-center gap-3">
@@ -446,6 +543,8 @@ function Contact() {
                 rel="noreferrer"
               />
             }
+            data-track="x_follow_click"
+            data-location="contact"
           >
             Follow us on X<span className="sr-only">(opens in a new tab)</span>
             <ArrowUpRight data-icon="inline-end" />

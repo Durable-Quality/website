@@ -1,29 +1,30 @@
-import type { Metadata } from "next"
-import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google"
+import type { Metadata, Viewport } from "next"
+import { Geist, Geist_Mono } from "next/font/google"
 import Script from "next/script"
 
 import "./globals.css"
 import { cn } from "@/lib/utils"
 
-// Only the weights the site actually renders: sans at 400 (body) and 500
-// (shadcn Button/Card), mono at 400 (labels), 500 (card titles, wordmark), and
-// 600 (headings). Every extra weight is another font file to fetch.
-const plexSans = IBM_Plex_Sans({
+// The same type as Durable Testing. Only the weights the site actually
+// renders: sans at 400 (body), 500 (shadcn Button/Card), 600 (wordmark) and
+// 700 (headings), mono at 400 (labels) and 500 (card titles). Every extra
+// weight is another font file to fetch.
+const geist = Geist({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
 })
 
-const plexMono = IBM_Plex_Mono({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500"],
   variable: "--font-mono",
 })
 
 export const metadata: Metadata = {
   // Required so relative metadata URLs (the openGraph image below) resolve to
   // absolute ones; without it Next falls back to localhost and warns.
-  metadataBase: new URL("https://durable-quality.vercel.app"),
+  metadataBase: new URL("https://durableqa.xyz"),
   title: "Durable Quality",
   description:
     "An independent software studio building Burn, OmniLens, and SpecProof. Quality assured software, built through a different lens.",
@@ -31,6 +32,10 @@ export const metadata: Metadata = {
     title: "Durable Quality",
     images: ["/icon.png"],
   },
+}
+
+export const viewport: Viewport = {
+  themeColor: "#000000",
 }
 
 export default function RootLayout({
@@ -43,16 +48,24 @@ export default function RootLayout({
       lang="en"
       className={cn(
         "dark antialiased",
-        plexSans.variable,
-        plexMono.variable,
+        geist.variable,
+        geistMono.variable,
         "font-sans"
       )}
     >
       <body>{children}</body>
+      {/* Databuddy analytics, shared with Durable Testing
+          (durable-testing/src/layout.html). `track-attributes` sends a named
+          event for every click on an element with `data-track`, carrying its
+          other `data-*` attributes as properties; `track-outgoing-links` logs
+          clicks on links to other sites. */}
       <Script
         src="https://cdn.databuddy.cc/databuddy.js"
         data-client-id="e7c719eb-7a7e-4c0e-9544-e6f7e9d9d4d4"
         data-track-web-vitals="true"
+        data-track-attributes="true"
+        data-track-outgoing-links="true"
+        data-track-errors="true"
         crossOrigin="anonymous"
         async
       />
