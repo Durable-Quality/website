@@ -9,7 +9,7 @@ Package manager is **bun** (`bun.lock`).
 ```bash
 bun dev          # builds Durable Testing, then next dev
 bun run build    # builds Durable Testing, then next build
-bun run testing:build # rebuild Durable Testing into public/testing
+bun run testing:build # rebuild Durable Testing into public/durable-testing
 bun start        # serve production build
 bun run lint     # eslint (flat config, next core-web-vitals + typescript)
 bun run typecheck # tsc --noEmit
@@ -31,17 +31,17 @@ Single-page marketing site for the Durable Quality studio (products: Burn, OmniL
 - `components/ui/` — shadcn components (style `base-nova`, built on `@base-ui/react`, not Radix). Add via the shadcn CLI; aliases are in `components.json`.
 - `app/layout.tsx` — loads Geist and Geist Mono (the same type as Durable Testing) via `next/font/google` into `--font-sans` / `--font-mono`, and hardcodes `className="dark"` on `<html>`.
 - `app/robots.ts` — allows every crawler, names the AI crawlers explicitly, and points to Durable Testing's sitemap.
-- `durable-testing/` — Durable Testing at `/testing`, a static site that `durable-testing/build.mjs` writes into `public/testing/` (gitignored) before every `dev` and `build`. Its routing (clean URLs, `Accept: text/markdown` negotiation, headers) lives in `next.config.ts`. See `durable-testing/README.md`.
+- `durable-testing/` — Durable Testing at `/durable-testing`, a static site that `durable-testing/build.mjs` writes into `public/durable-testing/` (gitignored) before every `dev` and `build`. Its routing (clean URLs, `Accept: text/markdown` negotiation, headers) lives in `next.config.ts`. See `durable-testing/README.md`.
 
 ### Durable Testing is deliberately separate
 
-It keeps its own look, its own light/dark/system toggle, and its own browser script (copy buttons, hand-drawn diagrams). The brand rules and the conventions below apply to the Next app, not to the guide: don't port it into React, and don't restyle it to match the landing page unless asked. Edit it in `durable-testing/src/`, never in `public/testing/`, which is overwritten on every build.
+It keeps its own look, its own light/dark/system toggle, and its own browser script (copy buttons, hand-drawn diagrams). The brand rules and the conventions below apply to the Next app, not to the guide: don't port it into React, and don't restyle it to match the landing page unless asked. Edit it in `durable-testing/src/`, never in `public/durable-testing/`, which is overwritten on every build.
 
 ## Brand system (`app/globals.css`)
 
 - **Monochrome and dark-only.** `:root` and `.dark` share identical token values; there is no theme toggle or `next-themes` (deliberately removed, see CHANGELOG). Do not reintroduce light/dark switching. Durable Testing keeps its own toggle; that does not apply here.
 - **`.inverted`** is the mechanism for light sections: apply it to a section element alongside `bg-background text-foreground` and every shadcn token flips to the light palette within that subtree. No section currently uses it, but prefer it over one-off light-colored classes when one needs to.
-- **The logo is the supplied image, shown as delivered** (white mark on black, `public/icon.png`, with a 512px copy at `app/icon.png`). Render it with `LogoMark` from `components/site/logo.tsx`, which wraps that PNG; never redraw it as SVG or tint it with theme colors (`currentColor`, `--foreground`, etc.). Durable Testing uses the same file, which `durable-testing/build.mjs` copies to `/testing/assets/logo.png`. This applies to every page, including future ones.
+- **The logo is the supplied image, shown as delivered** (white mark on black, `public/icon.png`, with a 512px copy at `app/icon.png`). Render it with `LogoMark` from `components/site/logo.tsx`, which wraps that PNG; never redraw it as SVG or tint it with theme colors (`currentColor`, `--foreground`, etc.). Durable Testing uses the same file, which `durable-testing/build.mjs` copies to `/durable-testing/assets/logo.png`. This applies to every page, including future ones.
 - Headings use `--font-heading`, which is aliased to the **sans** font, set bold with tight tracking as on Durable Testing. Card titles are sans, semibold. Mono is for labels and badges.
 - Custom utility: `animate-ticker` (marquee; already no-ops under `prefers-reduced-motion`).
 

@@ -4,7 +4,7 @@ import durableTesting from "@/durable-testing/site.config.json"
 
 // Search engines, AI crawlers, and AI agents are all welcome. The AI crawlers
 // are named so the invitation is explicit to each of them, not just implied by
-// the wildcard. Durable Testing at /testing is written for exactly these readers.
+// the wildcard. Durable Testing at /durable-testing is written for exactly these readers.
 const aiCrawlers = [
   "GPTBot",
   "OAI-SearchBot",

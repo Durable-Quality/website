@@ -4,8 +4,8 @@
 
 ## Durable Testing
 
-- [Durable Testing](https://durableqa.xyz/testing/llms.txt): testing fundamentals for developers and AI agents: the 7 testing principles, the SDLC and STLC, and the test pyramid.
-- [Rules for agents](https://durableqa.xyz/testing/rules.md): the guide's testing rules in one block, for AGENTS.md or CLAUDE.md.
+- [Durable Testing](https://durableqa.xyz/durable-testing/llms.txt): testing fundamentals for developers and AI agents: the 7 testing principles, the SDLC and STLC, and the test pyramid.
+- [Rules for agents](https://durableqa.xyz/durable-testing/rules.md): the guide's testing rules in one block, for AGENTS.md or CLAUDE.md.
 
 ## Products
 

@@ -16,15 +16,15 @@ function SiteHeader() {
           <Wordmark />
         </Link>
         <div className="flex items-center gap-3">
-          {/* A plain anchor, not next/link: /testing is the static Durable Testing
-              guide in public/testing, not a route of this app. Hidden on phones,
+          {/* A plain anchor, not next/link: /durable-testing is the static Durable Testing
+              guide in public/durable-testing, not a route of this app. Hidden on phones,
               where the header has no room; the footer link and the landing
               section still reach it there. */}
           <Button
             size="sm"
             variant="outline"
             nativeButton={false}
-            render={<a href="/testing" />}
+            render={<a href="/durable-testing" />}
             className="hidden sm:inline-flex"
           >
             Durable Testing

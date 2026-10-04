@@ -13,9 +13,9 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     // Durable Testing: a static site with its own plain-JS build and
-    // browser script, built into public/testing.
+    // browser script, built into public/durable-testing.
     "durable-testing/**",
-    "public/testing/**",
+    "public/durable-testing/**",
   ]),
 ]);
 

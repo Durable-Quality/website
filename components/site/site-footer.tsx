@@ -6,10 +6,10 @@ function SiteFooter() {
           <p className="text-muted-foreground">
             © {new Date().getFullYear()} Durable Quality
           </p>
-          {/* A plain anchor, not next/link: /testing is the static Durable Testing guide
-              in public/testing, not a route of this app. */}
+          {/* A plain anchor, not next/link: /durable-testing is the static Durable Testing guide
+              in public/durable-testing, not a route of this app. */}
           <a
-            href="/testing"
+            href="/durable-testing"
             className="text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
           >
             Durable Testing

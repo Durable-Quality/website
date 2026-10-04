@@ -32,7 +32,7 @@ pnpm-debug.log*
 .env*
 
 # Durable Testing, built from durable-testing/ by `bun run testing:build`
-/public/testing/
+/public/durable-testing/
 
 # typescript
 *.tsbuildinfo

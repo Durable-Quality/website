@@ -3,12 +3,12 @@
 ## [0.4.0] - 2026-10-04
 
 ### Added
-- Durable Testing at `/testing`: testing fundamentals for developers and AI agents, covering the 7 testing principles, the SDLC and STLC, and the test pyramid, with hand-drawn diagrams and rules agents can follow. It is a static site built from `durable-testing/` into `public/testing/` before every `dev` and `build`, and it keeps its own look and light/dark toggle, separate from the landing page.
-- Agent-readable versions of the guide: every page has a Markdown twin at `/testing/<page>.md`, also returned when a page is requested with `Accept: text/markdown`, plus `/testing/rules.md`, `/testing/llms.txt`, `/testing/llms-full.txt`, and a Claude skill at `/testing/skills/durable-testing/SKILL.md`.
+- Durable Testing at `/durable-testing`: testing fundamentals for developers and AI agents, covering the 7 testing principles, the SDLC and STLC, and the test pyramid, with hand-drawn diagrams and rules agents can follow. It is a static site built from `durable-testing/` into `public/durable-testing/` before every `dev` and `build`, and it keeps its own look and light/dark toggle, separate from the landing page.
+- Agent-readable versions of the guide: every page has a Markdown twin at `/durable-testing/<page>.md`, also returned when a page is requested with `Accept: text/markdown`, plus `/durable-testing/rules.md`, `/durable-testing/llms.txt`, `/durable-testing/llms-full.txt`, and a Claude skill at `/durable-testing/skills/durable-testing/SKILL.md`.
 - `robots.txt`, which allows every crawler, names the AI crawlers explicitly, and points to the guide's sitemap.
 - A root `/llms.txt` describing the studio, its products, and the guide.
-- A "Durable Testing" section on the landing page, between the products and Substack, with a card for each guide page and a "Read Durable Testing" button to `/testing`.
-- A "Durable Testing" button in the site header, before "Get in touch", linking to `/testing`. It is hidden on phones, where the header has no room; the footer link and the landing section still reach the guide there.
+- A "Durable Testing" section on the landing page, between the products and Substack, with a card for each guide page and a "Read Durable Testing" button to `/durable-testing`.
+- A "Durable Testing" button in the site header, before "Get in touch", linking to `/durable-testing`. It is hidden on phones, where the header has no room; the footer link and the landing section still reach the guide there.
 - A "Durable Testing" link in the site footer, opposite the copyright line, so the guide is reachable from every page of the landing site.
 - Databuddy analytics on the guide's pages, with the same client ID as the landing page.
 

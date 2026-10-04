@@ -1,5 +1,5 @@
 // Builds Durable Testing into the website's public/ folder, under the path of
-// baseUrl (public/testing for https://durableqa.xyz/testing): one HTML page per guide page,
+// baseUrl (public/durable-testing for https://durableqa.xyz/durable-testing): one HTML page per guide page,
 // plus the Markdown twins, rules.md, llms.txt, llms-full.txt, sitemap.xml and the
 // Claude skill that agents read. No dependencies: `node durable-testing/build.mjs`.
 // The site's package.json runs it before `next dev` and `next build`, and
@@ -19,11 +19,11 @@ const root = dirname(fileURLToPath(import.meta.url));
 const src = join(root, "src");
 const config = JSON.parse(readFileSync(join(root, "site.config.json"), "utf8"));
 const baseUrl = (process.env.SITE_URL || config.baseUrl).replace(/\/+$/, "");
-// The guide lives under a path of the site (e.g. /testing) and owns that whole folder
+// The guide lives under a path of the site (e.g. /durable-testing) and owns that whole folder
 // of public/, which the build clears first. Refuse to build into public/ itself.
 const basePath = new URL(baseUrl).pathname.replace(/\/+$/, "");
 if (!/^\/[a-z0-9-]+$/.test(basePath)) {
-  throw new Error(`baseUrl must end in a single path segment such as /testing, got "${basePath || "/"}"`);
+  throw new Error(`baseUrl must end in a single path segment such as /durable-testing, got "${basePath || "/"}"`);
 }
 const out = join(root, "..", "public", basePath.slice(1));
 const today = new Date().toISOString().slice(0, 10);

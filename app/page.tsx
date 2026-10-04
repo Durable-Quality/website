@@ -282,29 +282,29 @@ function Products() {
   )
 }
 
-// Plain anchors, not next/link: /testing is the static Durable Testing guide in
-// public/testing, not a route of this app. The images are the guide's overview
+// Plain anchors, not next/link: /durable-testing is the static Durable Testing guide in
+// public/durable-testing, not a route of this app. The images are the guide's overview
 // drawings, pre-rendered as static SVGs in its dark palette so this page needs
 // no script to draw them.
 const durableTestingPages = [
   {
     image: "/testing-overview/testing-principles.svg",
     title: "The 7 testing principles",
-    href: "/testing/testing-principles",
+    href: "/durable-testing/testing-principles",
     description:
       "Seven constraints every test strategy lives inside, from risk-based testing to the absence-of-errors fallacy.",
   },
   {
     image: "/testing-overview/sdlc-stlc.svg",
     title: "SDLC & STLC",
-    href: "/testing/sdlc-stlc",
+    href: "/durable-testing/sdlc-stlc",
     description:
       "How software gets built, how it gets tested, and where the two meet in the V-model.",
   },
   {
     image: "/testing-overview/test-pyramid.svg",
     title: "The testing triangle",
-    href: "/testing/test-pyramid",
+    href: "/durable-testing/test-pyramid",
     description:
       "How many unit, integration and E2E tests to write, and why the shape matters.",
   },
@@ -353,7 +353,11 @@ function DurableTesting() {
         ))}
       </div>
       <div className="flex justify-center">
-        <Button size="lg" nativeButton={false} render={<a href="/testing" />}>
+        <Button
+          size="lg"
+          nativeButton={false}
+          render={<a href="/durable-testing" />}
+        >
           Read Durable Testing
           <ArrowUpRight data-icon="inline-end" />
         </Button>
