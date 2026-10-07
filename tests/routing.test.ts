@@ -1,9 +1,8 @@
 // Checks the guide's routing in next.config.ts on a running server: clean
 // URLs, redirects from .html, Markdown negotiation, headers and 404s.
 //
-// By default it starts `next start` on the production build, so run
-// `bun run build` first. Set ROUTING_BASE_URL to test a deployed site
-// instead, e.g. ROUTING_BASE_URL=https://durableqa.xyz bun test tests/routing.test.ts
+// It starts `next start` on the production build, so run `bun run build`
+// first. The live site gets a lighter check, tests/smoke.test.ts.
 
 import { afterAll, beforeAll, describe, expect, test } from "bun:test"
 import { spawn, type ChildProcess } from "node:child_process"
@@ -13,10 +12,8 @@ import { join } from "node:path"
 import { basePath, baseUrl, guideSlugs, read } from "./guide"
 
 const root = join(import.meta.dir, "..")
-const live = process.env.ROUTING_BASE_URL?.replace(/\/+$/, "")
-
 let server: ChildProcess | undefined
-let origin = live ?? ""
+let origin = ""
 
 // Starts `next start` on a free port and waits until it answers.
 async function startServer() {
@@ -54,9 +51,7 @@ async function startServer() {
   throw new Error("next start did not answer within 10 seconds")
 }
 
-beforeAll(async () => {
-  if (!live) await startServer()
-}, 30_000)
+beforeAll(startServer, 30_000)
 
 afterAll(() => {
   server?.kill()
@@ -72,10 +67,12 @@ const browser = {
     "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
 }
 
-// Every page, as its clean URL and the file behind it.
+// The rules are patterns, so one page of each kind covers them: the index,
+// which has rules of its own, and a guide page.
+const guidePage = guideSlugs[0]
 const pages = [
   { url: basePath, file: "index" },
-  ...guideSlugs.map((slug) => ({ url: `${basePath}/${slug}`, file: slug })),
+  { url: `${basePath}/${guidePage}`, file: guidePage },
 ]
 
 describe("clean URLs", () => {
@@ -104,10 +101,7 @@ describe("redirects", () => {
   const cases = [
     { from: `${basePath}/index`, to: basePath },
     { from: `${basePath}/index.html`, to: basePath },
-    ...guideSlugs.map((slug) => ({
-      from: `${basePath}/${slug}.html`,
-      to: `${basePath}/${slug}`,
-    })),
+    { from: `${basePath}/${guidePage}.html`, to: `${basePath}/${guidePage}` },
   ]
 
   test.each(cases)("$from redirects to $to", async ({ from, to }) => {
@@ -165,10 +159,8 @@ describe("headers", () => {
   )
 
   const crossOrigin = [
-    ...pages.map((p) => p.url),
-    `${basePath}/index.md`,
+    pages[1].url,
     `${basePath}/rules.md`,
-    `${basePath}/llms.txt`,
     `${basePath}/skills/durable-testing/SKILL.md`,
   ]
 

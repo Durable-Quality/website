@@ -1,6 +1,6 @@
 {
   "name": "dq-site",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "type": "module",
   "private": true,
   "scripts": {
@@ -12,7 +12,8 @@
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "test": "bun test tests",
-    "test:routing": "bun test tests/routing.test.ts"
+    "test:routing": "bun test tests/routing.test.ts",
+    "test:smoke": "bun test tests/smoke.test.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

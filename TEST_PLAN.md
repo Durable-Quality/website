@@ -13,10 +13,11 @@ Most of the risk is in two places:
 | --- | --- | --- |
 | Routing, build output | `bun test` | Built into Bun, which the repo already uses. No new dependency. |
 | Build checks | `durable-testing/build.mjs` | The build already stops on errors. These are a few more of those checks. |
-| Browser smoke tests | Playwright (`@playwright/test`) | Starts the server for us and records a trace when a test fails. `playwright-core` is already installed. |
 | CI | GitHub Actions with `oven-sh/setup-bun` | The repo is on GitHub and has no CI yet. |
 
-Tests live in `tests/`. Run them with `bun run test` (routing and build output) and `bun run test:e2e` (browser).
+Tests live in `tests/`. Run them with `bun run test` (routing and build output).
+
+There are no browser tests. Diagrams drawing and the theme toggle are low risk and visible on any visit, so they don't justify a browser dependency.
 
 ## How to use this checklist
 
@@ -29,7 +30,7 @@ When an item is done, tick it and replace `Proof: _pending_` with a link to the 
 
 ## 1. Routing
 
-Check that the guide's URLs behave correctly on a running server. The tests start `next start` on the production build, so run `bun run build` first. Set `ROUTING_BASE_URL` to test a deployed site instead.
+Check that the guide's URLs behave correctly on a running server. The tests start `next start` on the production build, so run `bun run build` first. The rules are patterns, so the tests use one page of each kind (the index and a guide page) rather than every page.
 
 - [x] Clean URLs load the page
   Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("clean URLs")`)
@@ -43,8 +44,8 @@ Check that the guide's URLs behave correctly on a running server. The tests star
   Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("404s")`)
 - [x] `robots.txt` and `llms.txt` load
   Proof: [tests/routing.test.ts](tests/routing.test.ts) (`describe("robots.txt and llms.txt")`)
-- [x] The routing tests also run against the live site after each deploy
-  Proof: [.github/workflows/post-deploy.yml](.github/workflows/post-deploy.yml)
+- [x] A smoke test checks the live site after each deploy: one request per kind of rule, no build
+  Proof: [tests/smoke.test.ts](tests/smoke.test.ts), [.github/workflows/post-deploy.yml](.github/workflows/post-deploy.yml)
 
 ## 2. Build output
 
@@ -70,16 +71,7 @@ Make the build itself fail when:
 - [x] A page's `.md` and `.html` versions have different headings
   Proof: [durable-testing/build.mjs](durable-testing/build.mjs) (`headingProblems`)
 
-## 4. Browser smoke tests
-
-- [ ] The home page loads without errors and links to the guide
-  Proof: _pending_
-- [ ] The guide's diagrams draw
-  Proof: _pending_
-- [ ] The light/dark toggle remembers its setting
-  Proof: _pending_
-
-## 5. CI
+## 4. CI
 
 - [x] Typecheck, lint and the tests run on every pull request
   Proof: [.github/workflows/ci.yml](.github/workflows/ci.yml)
