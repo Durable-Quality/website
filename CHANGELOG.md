@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.5.1] - 2026-10-07
+
+### Changed
+- The post-deploy check is now a five-request smoke test of the live site instead of a full rebuild and comparison.
+- Routing tests check one page of each kind instead of every page, and the planned browser tests are dropped.
+
 ## [0.5.0] - 2026-10-07
 
 ### Added
