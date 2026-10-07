@@ -31,8 +31,8 @@ async function GET(request: Request) {
 
   if (databuddy && request.method === "GET") {
     const userAgent = request.headers.get("user-agent") ?? ""
-    after(() =>
-      databuddy.track({
+    after(async () => {
+      const result = await databuddy.track({
         name: "skill_install",
         properties: {
           // "curl", "Mozilla", "Wget", ... from e.g. "curl/8.7.1".
@@ -41,7 +41,12 @@ async function GET(request: Request) {
           country: request.headers.get("x-vercel-ip-country") ?? "unknown",
         },
       })
-    )
+      // Shows in Vercel's logs, the only place a rejected event is visible.
+      if (result.success) console.log("skill_install sent", result)
+      else console.error("skill_install failed", result)
+    })
+  } else if (!databuddy && process.env.VERCEL_ENV === "production") {
+    console.warn("skill_install not sent: DATABUDDY_API_KEY is not set")
   }
 
   // No s-maxage, so the CDN never caches it and every download is counted.
