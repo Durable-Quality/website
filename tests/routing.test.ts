@@ -87,6 +87,19 @@ describe("clean URLs", () => {
   })
 })
 
+describe("Claude skill", () => {
+  // The install command curls this; a route handler serves it to count installs.
+  test("SKILL.md serves the skill as Markdown, uncached", async () => {
+    const res = await get(`${basePath}/skills/durable-testing/SKILL.md`, {
+      "User-Agent": "curl/8.7.1",
+    })
+    expect(res.status).toBe(200)
+    expect(res.headers.get("content-type")).toStartWith("text/markdown")
+    expect(res.headers.get("cache-control") ?? "").not.toContain("s-maxage")
+    expect(await res.text()).toBe(read("skills/durable-testing/SKILL.md"))
+  })
+})
+
 describe("redirects", () => {
   const cases = [
     { from: `${basePath}/index`, to: basePath },

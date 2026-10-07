@@ -12,6 +12,12 @@ const wantsMarkdown = [
 ]
 
 const nextConfig: NextConfig = {
+  // The skill route reads the file the guide build wrote into public/.
+  outputFileTracingIncludes: {
+    "/api/durable-testing-skill": [
+      "./public/durable-testing/skills/durable-testing/SKILL.md",
+    ],
+  },
   images: {
     remotePatterns: [
       {
@@ -44,6 +50,11 @@ const nextConfig: NextConfig = {
     return {
       // Checked before public/, so a page URL can return its Markdown twin.
       beforeFiles: [
+        // Served by a route handler so each install is counted in Databuddy.
+        {
+          source: "/durable-testing/skills/durable-testing/SKILL.md",
+          destination: "/api/durable-testing-skill",
+        },
         {
           source: "/durable-testing",
           has: wantsMarkdown,
