@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.0] - 2026-10-07
+
+### Added
+- Claude skill downloads are counted in Databuddy as `skill_install` (needs `DATABUDDY_API_KEY`).
+
 ## [0.4.1] - 2026-10-04
 
 ### Added
