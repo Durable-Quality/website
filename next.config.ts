@@ -1,6 +1,9 @@
 import type { NextConfig } from "next"
+import { withSentryConfig } from "@sentry/nextjs/config"
 
 import durableTesting from "./durable-testing/site.config.json"
+
+const sentryAuthToken = process.env.SENTRY_AUTH_TOKEN
 
 // Durable Testing is a static site that durable-testing/build.mjs writes into
 // public/durable-testing (see durable-testing/README.md). These rules give its pages clean
@@ -110,4 +113,12 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default nextConfig
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG ?? "durable-quality",
+  project: process.env.SENTRY_PROJECT ?? "durable-qa",
+  sentryUrl: process.env.SENTRY_URL ?? "https://de.sentry.io",
+  silent: !process.env.CI,
+  ...(sentryAuthToken
+    ? { authToken: sentryAuthToken }
+    : { sourcemaps: { disable: true } }),
+})
