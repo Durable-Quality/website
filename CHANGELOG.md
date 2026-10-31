@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+- Sentry error monitoring and performance tracing in production via `@sentry/nextjs` (client, server, and edge). Source map upload runs only when `SENTRY_AUTH_TOKEN` is set.
+
 ## [0.5.1] - 2026-10-07
 
 ### Changed
